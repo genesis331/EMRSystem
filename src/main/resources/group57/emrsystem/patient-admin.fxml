@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Patient Form">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+            </Label>
+            <HBox spacing="15.0" GridPane.columnIndex="2">
+               <children>
+                   <Button defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #1890FF;" text="Add Record" textAlignment="CENTER" textFill="WHITE">
+                       <padding>
+                           <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
+                       </padding>
+                       <font>
+                           <Font name="Arial Bold" size="14.0" />
+                       </font>
+                   </Button>
+                   <Button defaultButton="true" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: red; -fx-border-style: dashed;" text="Logout" textAlignment="CENTER" textFill="#ff3d3d">
+                       <padding>
+                           <Insets bottom="10.0" left="35.0" right="35.0" top="10.0" />
+                       </padding>
+                       <font>
+                           <Font name="Arial Bold" size="14.0" />
+                       </font>
+                   </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="25.0" left="50.0" right="50.0" top="40.0" />
+         </padding>
+      </GridPane>
+      <TableView>
+        <columns>
+          <TableColumn prefWidth="75.0" text="National ID" />
+          <TableColumn prefWidth="75.0" text="Name" />
+            <TableColumn prefWidth="75.0" text="Age" />
+            <TableColumn prefWidth="75.0" text="Gender" />
+            <TableColumn prefWidth="75.0" text="Contact Number" />
+            <TableColumn prefWidth="75.0" text="Address" />
+            <TableColumn prefWidth="75.0" text="Actions" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <VBox.margin>
+            <Insets left="50.0" right="50.0" />
+         </VBox.margin>
+      </TableView>
+   </children>
+</VBox>
