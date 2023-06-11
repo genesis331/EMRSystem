@@ -1,11 +1,11 @@
 package group57.emrsystem;
 
 public class Analysis {
-    private int date;
+    private String date;
     private String type_of_test;
     private String result;
     
-    public Analysis(int date, String type_of_test, String result){
+    public Analysis(String date, String type_of_test, String result){
         this.date = date;
         this.type_of_test = type_of_test;
         this.result = result;
@@ -15,7 +15,7 @@ public class Analysis {
         return this;
     }
     
-    public void modifydate(int date){
+    public void modifydate(String date){
         this.date = date;
     }
     
