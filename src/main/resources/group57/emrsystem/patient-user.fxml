@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane>
         <columnConstraints>
@@ -24,7 +24,7 @@
             </Label>
             <HBox spacing="15.0" GridPane.columnIndex="2">
                <children>
-                   <Button defaultButton="true" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: red; -fx-border-style: dashed;" text="Logout" textAlignment="CENTER" textFill="#ff3d3d">
+                   <Button fx:id="logoutButtonUser" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: red; -fx-border-style: dashed;" text="Logout" textAlignment="CENTER" textFill="#ff3d3d">
                        <padding>
                            <Insets bottom="10.0" left="35.0" right="35.0" top="10.0" />
                        </padding>
@@ -58,7 +58,7 @@
                                        <Font name="Arial" size="13.0" />
                                    </font>
                                </Label>
-                               <TextField>
+                               <TextField fx:id="nationalIDField">
                                    <font>
                                        <Font size="14.0" />
                                    </font>
@@ -77,7 +77,7 @@
                                        <Font name="Arial" size="13.0" />
                                    </font>
                                </Label>
-                               <TextField>
+                               <TextField fx:id="nameField">
                                    <font>
                                        <Font name="Arial" size="14.0" />
                                    </font>
@@ -101,7 +101,7 @@
                                                        <Font name="Arial" size="13.0" />
                                                    </font>
                                                </Label>
-                                               <TextField>
+                                               <TextField fx:id="ageField">
                                                    <font>
                                                        <Font name="Arial" size="14.0" />
                                                    </font>
@@ -118,7 +118,7 @@
                                                        <Font name="Arial" size="13.0" />
                                                    </font>
                                                </Label>
-                                               <TextField>
+                                               <TextField fx:id="genderField">
                                                    <font>
                                                        <Font size="14.0" />
                                                    </font>
@@ -142,7 +142,7 @@
                                        <Font name="Arial" size="13.0" />
                                    </font>
                                </Label>
-                               <TextField>
+                               <TextField fx:id="contactNumberField">
                                    <font>
                                        <Font size="14.0" />
                                    </font>
@@ -162,7 +162,7 @@
                                        <Font name="Arial" size="13.0" />
                                    </font>
                                </Label>
-                               <TextArea maxHeight="-Infinity" minHeight="-Infinity" prefHeight="134.0" prefWidth="267.0">
+                               <TextArea fx:id="addressArea" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="134.0" prefWidth="267.0">
                                    <font>
                                        <Font size="14.0" />
                                    </font>
@@ -188,7 +188,7 @@
                                </Label>
                                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                    <children>
-                                       <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1890ff;" text="View Medical History" textFill="#1890ff">
+                                       <Button fx:id="viewMedicalHistoryButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1890ff;" text="View Medical History" textFill="#1890ff">
                                            <padding>
                                                <Insets bottom="12.0" top="12.0" />
                                            </padding>
@@ -196,7 +196,7 @@
                                                <Font name="Arial" size="16.0" />
                                            </font>
                                        </Button>
-                                       <Button layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1890ff;" text="View Treatment Course" textFill="#1890ff">
+                                       <Button fx:id="viewTreatmentCourseButton" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1890ff;" text="View Treatment Course" textFill="#1890ff">
                                            <padding>
                                                <Insets bottom="12.0" top="12.0" />
                                            </padding>
@@ -204,7 +204,7 @@
                                                <Font name="Arial" size="16.0" />
                                            </font>
                                        </Button>
-                                       <Button layoutX="10.0" layoutY="49.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1890ff;" text="View Analysis Form" textFill="#1890ff">
+                                       <Button fx:id="viewAnalysisFormButton" layoutX="10.0" layoutY="49.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1890ff;" text="View Analysis Form" textFill="#1890ff">
                                            <padding>
                                                <Insets bottom="12.0" top="12.0" />
                                            </padding>
@@ -212,7 +212,7 @@
                                                <Font name="Arial" size="16.0" />
                                            </font>
                                        </Button>
-                                       <Button layoutX="10.0" layoutY="88.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1890ff;" text="View Diagnosis Form" textFill="#1890ff">
+                                       <Button fx:id="viewDiagnosisFormButton" layoutX="10.0" layoutY="88.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1890ff;" text="View Diagnosis Form" textFill="#1890ff">
                                            <padding>
                                                <Insets bottom="12.0" top="12.0" />
                                            </padding>
@@ -220,7 +220,7 @@
                                                <Font name="Arial" size="16.0" />
                                            </font>
                                        </Button>
-                                       <Button layoutX="10.0" layoutY="127.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1890ff;" text="View Procedure &amp; Medicine Form" textFill="#1890ff" wrapText="true">
+                                       <Button fx:id="viewProcedureandMedicineFormButton" layoutX="10.0" layoutY="127.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #1890ff;" text="View Procedure &amp; Medicine Form" textFill="#1890ff" wrapText="true">
                                            <padding>
                                                <Insets bottom="12.0" top="12.0" />
                                            </padding>
@@ -253,7 +253,7 @@
                        </VBox>
                        <HBox spacing="10.0">
                            <children>
-                               <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #1890ff;" text="Save" textFill="WHITE" wrapText="true">
+                               <Button fx:id="saveButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #1890ff;" text="Save" textFill="WHITE" wrapText="true">
                                    <padding>
                                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
                                    </padding>
