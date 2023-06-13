@@ -24,7 +24,7 @@
                 </Label>
                 <HBox spacing="15.0" GridPane.columnIndex="2">
                     <children>
-                        <Button defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #1890FF;" text="Add Record" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="add_record_button" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #1890FF;" text="Add Record" textAlignment="CENTER" textFill="WHITE">
                             <padding>
                                 <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
                             </padding>
@@ -39,7 +39,7 @@
                 <Insets bottom="25.0" left="50.0" right="50.0" top="40.0" />
             </padding>
         </GridPane>
-        <TableView>
+        <TableView fx:id="treatment_admin_table">
             <columns>
                 <TableColumn prefWidth="75.0" text="Treatment" />
                 <TableColumn prefWidth="75.0" text="Start Date" />

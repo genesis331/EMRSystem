@@ -28,7 +28,7 @@
                 <Insets bottom="25.0" left="50.0" right="50.0" top="40.0" />
             </padding>
         </GridPane>
-        <TableView>
+        <TableView fx:id="analysis_user_table">
             <columns>
                 <TableColumn prefWidth="75.0" text="Date" />
                 <TableColumn prefWidth="75.0" text="Type of Test" />
