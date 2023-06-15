@@ -28,16 +28,16 @@
                 <Insets bottom="25.0" left="50.0" right="50.0" top="40.0" />
             </padding>
         </GridPane>
-        <TableView>
+        <TableView fx:id="UserTableView">
             <columns>
-                <TableColumn prefWidth="75.0" text="Date" />
-                <TableColumn prefWidth="75.0" text="Time" />
-                <TableColumn prefWidth="75.0" text="Ward" />
-                <TableColumn prefWidth="75.0" text="Treatment Results" />
-                <TableColumn prefWidth="75.0" text="Observation" />
-                <TableColumn prefWidth="75.0" text="Major Complications" />
-                <TableColumn prefWidth="75.0" text="Attending Doctor/Nurse" />
-            <TableColumn prefWidth="75.0" text="Actions" />
+                <TableColumn fx:id="UserDateColumn" prefWidth="75.0" text="Date" />
+                <TableColumn fx:id="UserTimeColumn" prefWidth="75.0" text="Time" />
+                <TableColumn fx:id="UserWardColumn" prefWidth="75.0" text="Ward" />
+                <TableColumn fx:id="UserTreatmentResultsColumn" prefWidth="75.0" text="Treatment Results" />
+                <TableColumn fx:id="UserObservationsColumn" prefWidth="75.0" text="Observation" />
+                <TableColumn fx:id="UserMajorComplicationsColumn" prefWidth="75.0" text="Major Complications" />
+                <TableColumn fx:id="UserAttendingDoctorColumn" prefWidth="75.0" text="Attending Doctor/Nurse" />
+                <TableColumn fx:id="UserActionsColumn" prefWidth="75.0" text="Actions" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
