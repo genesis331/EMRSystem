@@ -2,6 +2,7 @@ package group57.emrsystem;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class ProcedureAndMedicineController {
@@ -9,10 +10,10 @@ public class ProcedureAndMedicineController {
     private Button addbuttonadmin;
 
     @FXML
-    private Table tableadmin;
+    private TableView tableadmin;
 
     @FXML
-    private Table tableuser;
+    private TableView tableuser;
 
     @FXML
     private TextField textdateprocedure;
