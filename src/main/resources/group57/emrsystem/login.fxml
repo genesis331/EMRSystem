@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="720.0" prefWidth="1080.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group57.emrsystem.LoginController">
+<VBox alignment="CENTER" prefHeight="720.0" prefWidth="1080.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" orientation="VERTICAL" rowValignment="TOP" style="-fx-background-color: white;" vgap="30.0" VBox.vgrow="ALWAYS">
          <children>
