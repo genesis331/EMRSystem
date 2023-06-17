@@ -1,6 +1,7 @@
 package group57.emrsystem;
 
 public class Patient {
+    private String id;
     private String name;
     private int national_id;
     private int age;
@@ -8,7 +9,8 @@ public class Patient {
     private String address;
     private int contact_no;
 
-    public Patient(String name, int national_id, int age, String gender, String address, int contact_no) {
+    public Patient(String id, String name, int national_id, int age, String gender, String address, int contact_no) {
+        this.id = id;
         this.name = name;
         this.national_id = national_id;
         this.age = age;
@@ -19,6 +21,10 @@ public class Patient {
 
     public Patient getPatient() {
         return this;
+    }
+
+    public void modifyID(String id) {
+        this.id = id
     }
 
     public void modifyName(String name) {
