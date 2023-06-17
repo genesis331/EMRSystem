@@ -7,5 +7,11 @@
    <children>
       <Button fx:id="launchBtn" mnemonicParsing="false" onMouseClicked="#launchNewWindow" text="Launch New Window" />
       <Button fx:id="launchBtn1" layoutX="281.0" layoutY="197.0" mnemonicParsing="false" onMouseClicked="#replaceWindow" text="Replace Current Window" />
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <columns>
+            <TableColumn fx:id="name_col" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="addr_col" prefWidth="75.0" text="Address" />
+            <TableColumn fx:id="phonenum_col" prefWidth="75.0" text="Phone" />
+         </columns></TableView>
    </children>
 </VBox>
