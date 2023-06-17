@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="launchBtn" mnemonicParsing="false" onMouseClicked="#launchNewWindow" text="Launch New Window" />
+      <Button fx:id="launchBtn1" layoutX="281.0" layoutY="197.0" mnemonicParsing="false" onMouseClicked="#replaceWindow" text="Replace Current Window" />
+   </children>
+</VBox>
