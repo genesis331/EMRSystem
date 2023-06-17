@@ -24,7 +24,7 @@ public class Patient {
     }
 
     public void modifyID(String id) {
-        this.id = id
+        this.id = id;
     }
 
     public void modifyName(String name) {
