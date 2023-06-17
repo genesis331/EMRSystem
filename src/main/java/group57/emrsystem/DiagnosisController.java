@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class DiagnosisController {
+    private Stage stage;
     @FXML
     private TextField DateTextField;
     private TextField NameTextField;
@@ -15,6 +17,9 @@ public class DiagnosisController {
     private Button SaveButton;
     private Button AdminAddRecordButton;
 
-
+    public DiagnosisController(Stage stage)
+    {
+        this.stage = stage;
+    }
 }
 

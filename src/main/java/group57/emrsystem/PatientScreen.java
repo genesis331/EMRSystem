@@ -11,6 +11,7 @@ public class PatientScreen extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("patient-admin.fxml"));
+        fxmlLoader.setController(new PatientController(stage));
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setTitle("Patient Form");
         stage.setScene(scene);

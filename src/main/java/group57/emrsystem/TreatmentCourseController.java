@@ -4,8 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class TreatmentCourseController {
+    private Stage stage;
+
     @FXML
     private TextField treatment_textfield;
 
@@ -26,4 +29,9 @@ public class TreatmentCourseController {
 
     @FXML
     private TableView treatment_user_table;
+
+    public TreatmentCourseController(Stage stage)
+    {
+        this.stage = stage;
+    }
 }

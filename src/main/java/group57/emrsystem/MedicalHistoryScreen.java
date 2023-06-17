@@ -11,6 +11,7 @@ public class MedicalHistoryScreen extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MedicalHistoryController.class.getResource("medicalhistory-admin.fxml"));
+        fxmlLoader.setController(new MedicalHistoryController(stage));
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setTitle("Medical History Form");
         stage.setScene(scene);

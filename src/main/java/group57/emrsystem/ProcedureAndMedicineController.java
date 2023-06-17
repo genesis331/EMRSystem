@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class ProcedureAndMedicineController {
+    private Stage stage;
     @FXML
     private Button addbuttonadmin;
 
@@ -35,4 +37,9 @@ public class ProcedureAndMedicineController {
 
     @FXML
     private Button savebuttonprocedure;
+
+    public ProcedureAndMedicineController(Stage stage)
+    {
+        this.stage = stage;
+    }
 }

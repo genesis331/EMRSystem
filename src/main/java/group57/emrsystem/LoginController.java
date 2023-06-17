@@ -7,8 +7,10 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginController {
+    private Stage stage;
     @FXML
     private TextField usernameField;
     @FXML
@@ -16,4 +18,8 @@ public class LoginController {
     @FXML
     private Button loginButton;
 
+    public LoginController(Stage stage)
+    {
+        this.stage = stage;
+    }
 }
