@@ -18,4 +18,5 @@ public class CSVHandler {
         this.delimiter = delimiter;
         this.newline = newline;
     }
+
 }

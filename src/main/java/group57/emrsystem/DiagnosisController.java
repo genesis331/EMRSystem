@@ -1,4 +1,7 @@
 package group57.emrsystem;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,7 +53,9 @@ public class DiagnosisController implements Initializable{
                 throw new RuntimeException(ex);
             }
         });
+        DiagnosisSaveButton.setOnAction(e->ToBeSaved());
     }
+
 
 
     public DiagnosisController(Stage stage)
@@ -153,6 +158,18 @@ public class DiagnosisController implements Initializable{
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void ToBeSaved(){
+        int id = 0;
+        String date = DiagnosisDateTextField.getText();
+        String name = DiagnosisNameTextField.getText();
+        String diagnosed_sickness = DiagnosisDiagnosedSicknessTextField.getText();
+        Diagnosis diagnosis = new Diagnosis(id, date, name, diagnosed_sickness);
+        CSVHandler csv = new CSVHandler();
+        //csv.create(diagnosis);
+        //I think we need a create method, what do you suggest?
+
     }
 
 
