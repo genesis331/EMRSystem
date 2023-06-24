@@ -8,17 +8,17 @@ import javafx.stage.Stage;
 public class MedicalHistoryController {
     private Stage stage;
     @FXML
-    private TextField DateTextField;
-    private TextField TimeTextField;
-    private TextField WardTextField;
-    private TextField TreatmentResultsTextField;
-    private TextField ObervationTextField;
-    private TextField MajorComplicationsTextField;
-    private TextField AttendingDoctorTextField;
-    private Button SaveButton;
-    private TableView UserTableView;
-    private TableView AdminTableView;
-    private Button AdminAddRecordButton;
+    private TextField MedHisDateTextField;
+    private TextField MedHisTimeTextField;
+    private TextField MedHisWardTextField;
+    private TextField MedHisTreatmentResultsTextField;
+    private TextField MedHisObervationTextField;
+    private TextField MedHisMajorComplicationsTextField;
+    private TextField MedHisAttendingDoctorTextField;
+    private Button MedHisSaveButton;
+    private TableView MedHisUserTableView;
+    private TableView MedHisAdminTableView;
+    private Button MedHisAdminAddRecordButton;
 
     public MedicalHistoryController(Stage stage)
     {

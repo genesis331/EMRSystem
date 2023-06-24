@@ -1,20 +1,20 @@
 package group57.emrsystem;
 
 public class Diagnosis {
-    private String id;
+    private int id;
     private String date;
     private String name;
     private String diagnosed_sickness;
     
 
-    public Diagnosis(String id, String date, String name, String diagnosed_sickness) {
+    public Diagnosis(int id, String date, String name, String diagnosed_sickness) {
         this.id = id;
         this.date = date;
         this.name = name;
         this.diagnosed_sickness = diagnosed_sickness;
         
     }
-    public void modifyid(String id){
+    public void modifyid(int id){
 
         this.id = id;
     }

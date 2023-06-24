@@ -28,7 +28,7 @@
                 <Insets bottom="25.0" left="50.0" right="50.0" top="40.0" />
             </padding>
         </GridPane>
-        <TableView fx:id="UserTableView">
+        <TableView fx:id="MedHisUserTableView">
             <columns>
                 <TableColumn fx:id="UserDateColumn" prefWidth="75.0" text="Date" />
                 <TableColumn fx:id="UserTimeColumn" prefWidth="75.0" text="Time" />
