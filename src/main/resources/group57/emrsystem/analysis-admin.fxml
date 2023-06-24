@@ -41,10 +41,10 @@
         </GridPane>
         <TableView fx:id="analysis_admin_table">
             <columns>
-                <TableColumn prefWidth="75.0" text="Date" />
-                <TableColumn prefWidth="75.0" text="Type of Test" />
-                <TableColumn prefWidth="75.0" text="Result" />
-            <TableColumn prefWidth="75.0" text="Actions" />
+                <TableColumn fx:id="analysis_admin_date" prefWidth="75.0" text="Date" />
+                <TableColumn fx:id="analysis_admin_type_of_test" prefWidth="75.0" text="Type of Test" />
+                <TableColumn fx:id="analysis_admin_result" prefWidth="75.0" text="Result" />
+            <TableColumn fx:id="analysis_admin_action" prefWidth="75.0" text="Actions" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
