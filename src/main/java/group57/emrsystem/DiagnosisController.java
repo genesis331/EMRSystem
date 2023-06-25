@@ -27,40 +27,51 @@ import java.util.ResourceBundle;
 public class DiagnosisController implements Initializable{
 
     private Stage stage;
+
+    private Boolean isAdmin = false;
     @FXML
     private TextField DiagnosisDateTextField;
+    @FXML
     private TextField DiagnosisNameTextField;
+    @FXML
     private TextField DiagnosisDiagnosedSicknessTextField;
-    private TableView DiagnosisAdminTableView;
-    private TableView DiagnosisUserTableView;
+    @FXML
+    public TableView<Diagnosis> DiagnosisAdminTableView;
+    @FXML
+    public TableView<Diagnosis> DiagnosisUserTableView;
+    @FXML
+    public TableColumn<Diagnosis, String> DiagnosisUserDateColumn;
+    @FXML
+    public TableColumn<Diagnosis, String> DiagnosisUserNameColumn;
+    @FXML
+    public TableColumn<Diagnosis, String> DiagnosisUserDiagnosedSicknessColumn;
+    @FXML
+    public Button DiagnosisSaveButton;
 
-    private TableColumn DiagnosisUserDateColumn;
-
-    private TableColumn DiagnosisUserNameColumn;
-    private TableColumn DiagnosisUserDiagnosedSicknessColumn;
-
-    private Button DiagnosisSaveButton;
-    private Button DiagnosisAdminAddRecordButton;
+    @FXML
+    public Button DiagnosisAdminAddRecordButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        UserRenderData();
-        AdminRenderData();
-        DiagnosisAdminAddRecordButton.setOnAction(e -> {
-            try {
-                ToAddRecord();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-        DiagnosisSaveButton.setOnAction(e->ToBeSaved());
+        if (isAdmin) {
+            AdminRenderData();
+            DiagnosisAdminAddRecordButton.setOnAction(e -> {
+                try {
+                    ToAddRecord();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+        } else {
+            UserRenderData();
+        }
+//        DiagnosisSaveButton.setOnAction(e->ToBeSaved());
     }
 
-
-
-    public DiagnosisController(Stage stage)
+    public DiagnosisController(Stage stage, boolean isAdmin)
     {
         this.stage = stage;
+        this.isAdmin = isAdmin;
     }
 
     public static List<Diagnosis> UserReadCSV(String fileName) {
@@ -137,23 +148,23 @@ public class DiagnosisController implements Initializable{
     public void UserRenderData() {
         List<Diagnosis> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
-        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("diagnosed_sickness"));
+        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("DiagnosedSickness"));
         DiagnosisUserTableView.setItems(list);
     }
 
     public void AdminRenderData() {
         List<Diagnosis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
-        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("diagnosed_sickness"));
-        DiagnosisUserTableView.setItems(list);
+        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("DiagnosedSickness"));
+        DiagnosisAdminTableView.setItems(list);
     }
 
     public void ToAddRecord() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/group57.emrsystem/newdiagnosis.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("newdiagnosis.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -171,7 +182,5 @@ public class DiagnosisController implements Initializable{
         //I think we need a create method, what do you suggest?
 
     }
-
-
 }
 
