@@ -30,7 +30,7 @@
         </GridPane>
         <TableView fx:id="DiagnosisUserTableView">
             <columns>
-                <TableColumn fx:id="DIagnosisUserDateColumn" prefWidth="75.0" text="Date" />
+                <TableColumn fx:id="DiagnosisUserDateColumn" prefWidth="75.0" text="Date" />
                 <TableColumn fx:id="DiagnosisUserNameColumn" prefWidth="75.0" text="Name" />
                 <TableColumn fx:id="DiagnosisUserDiagnosedSicknessColumn" prefWidth="75.0" text="Diagnosed Sickness" />
             </columns>
