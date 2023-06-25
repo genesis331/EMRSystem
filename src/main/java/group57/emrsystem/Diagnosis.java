@@ -7,6 +7,7 @@ public class Diagnosis {
     private SimpleStringProperty date;
     private SimpleStringProperty name;
     private SimpleStringProperty diagnosed_sickness;
+    public final static String fileName = "diagnosis.csv";
     
 
     public Diagnosis(int id, String date, String name, String diagnosed_sickness) {
@@ -28,6 +29,7 @@ public class Diagnosis {
     public String getName() {
         return name.get();
     }
+
 
     public String getDiagnosedSickness() {
         return diagnosed_sickness.get();
