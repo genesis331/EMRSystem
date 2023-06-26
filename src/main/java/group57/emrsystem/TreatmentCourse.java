@@ -1,20 +1,30 @@
 package group57.emrsystem;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class TreatmentCourse {
     private String id;
-    private String treatment;
-    private String start_date; 
-    private String end_date;
+    private SimpleStringProperty treatment;
+    private SimpleStringProperty start_date;
+    private SimpleStringProperty end_date;
     
      public TreatmentCourse(String id,String treatment,String start_date, String end_date){
          this.id = id;
-         this.treatment = treatment;
-         this.start_date = start_date;
-         this.end_date = end_date;
+         this.treatment = new SimpleStringProperty(treatment);
+         this.start_date = new SimpleStringProperty(start_date);
+         this.end_date = new SimpleStringProperty(end_date);
      }
      
-     public TreatmentCourse getTreatmentCourse(){
-         return this;
+     public String getTreatment(){
+         return treatment.get();
+     }
+
+     public String getStartDate(){
+         return start_date.get();
+     }
+
+     public String getEndDate(){
+         return end_date.get();
      }
 
      public void modifyid(String id){
@@ -22,15 +32,15 @@ public class TreatmentCourse {
      }
 
      public void modifytreatment(String treatment){
-         this.treatment = treatment;
+         this.treatment = new SimpleStringProperty(treatment);
      }
 
      public void modifystart_date(String start_date){
-         this.start_date = start_date;
+         this.start_date = new SimpleStringProperty(start_date);
      }
      
      public void modifyend_date(String end_date){
-         this.end_date = end_date;
+         this.end_date = new SimpleStringProperty(end_date);
      }
 }
 

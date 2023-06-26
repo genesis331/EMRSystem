@@ -144,9 +144,9 @@ public class TreatmentCourseController  implements Initializable {
     public void UserRenderData(){
         List<TreatmentCourse> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("treatmentcourse.csv")).getPath());
         ObservableList<TreatmentCourse> list = FXCollections.observableArrayList(data);
-        treatment_user_treatment.setCellValueFactory(new PropertyValueFactory<>("treatment"));
-        treatment_user_start_date.setCellValueFactory(new PropertyValueFactory<>("start_end"));
-        treatment_user_end_date.setCellValueFactory(new PropertyValueFactory<>("end_date"));
+        treatment_user_treatment.setCellValueFactory(new PropertyValueFactory<>("Treatment"));
+        treatment_user_start_date.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
+        treatment_user_end_date.setCellValueFactory(new PropertyValueFactory<>("EndDate"));
         //treatment_user_actions.setCellValueFactory(new PropertyValueFactory<>("actions"));
         treatment_user_table.setItems(list);
     }
@@ -154,9 +154,9 @@ public class TreatmentCourseController  implements Initializable {
     public void AdminRenderData(){
         List<TreatmentCourse> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("treatmentcourse.csv")).getPath());
         ObservableList<TreatmentCourse> list = FXCollections.observableArrayList(data);
-        treatment_user_treatment.setCellValueFactory(new PropertyValueFactory<>("treatment"));
-        treatment_user_start_date.setCellValueFactory(new PropertyValueFactory<>("start_end"));
-        treatment_user_end_date.setCellValueFactory(new PropertyValueFactory<>("end_date"));
+        treatment_user_treatment.setCellValueFactory(new PropertyValueFactory<>("Treatment"));
+        treatment_user_start_date.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
+        treatment_user_end_date.setCellValueFactory(new PropertyValueFactory<>("EndDate"));
         //treatment_user_actions.setCellValueFactory(new PropertyValueFactory<>("actions"));
         treatment_admin_table.setItems(list);
     }

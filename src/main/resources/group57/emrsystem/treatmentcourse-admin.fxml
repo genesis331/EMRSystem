@@ -43,7 +43,7 @@
             <columns>
                 <TableColumn fx:id="treatment_user_treatment" prefWidth="75.0" text="Treatment" />
                 <TableColumn fx:id="treatment_user_start_date" prefWidth="75.0" text="Start Date" />
-                <TableColumn fx:id="treatment_admin_end_date" prefWidth="75.0" text="End Date" />
+                <TableColumn fx:id="treatment_user_end_date" prefWidth="75.0" text="End Date" />
             <TableColumn fx:id="treatment_user_actions" prefWidth="75.0" text="Actions" />
             </columns>
             <columnResizePolicy>
