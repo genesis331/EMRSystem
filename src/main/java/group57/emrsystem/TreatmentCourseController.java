@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class TreatmentCourseController  implements Initializable {
     private Stage stage;
+    private Boolean isAdmin = false;
     @FXML
     private TextField treatment_textfield;
     @FXML
@@ -30,46 +31,42 @@ public class TreatmentCourseController  implements Initializable {
     @FXML
     private TextField end_date_textfield;
     @FXML
-    private Button save_button;
+    public Button save_button;
     @FXML
-    private TableView treatment_admin_table;
+    public TableView<TreatmentCourse> treatment_admin_table;
     @FXML
-    private Button add_record_button;
+    public Button add_record_button;
     @FXML
-    private TableView treatment_user_table;
+    public TableView<TreatmentCourse> treatment_user_table;
     @FXML
-    private TableColumn treatment_admin_treatment;
+    public TableColumn<TreatmentCourse, String> treatment_user_treatment;
     @FXML
-    private TableColumn treatment_admin_start_date;
+    public TableColumn<TreatmentCourse, String> treatment_user_start_date;
     @FXML
-    private TableColumn treatment_admin_end_date;
+    public TableColumn<TreatmentCourse, String> treatment_user_end_date;
     @FXML
-    private TableColumn treatment_admin_actions;
-    @FXML
-    private TableColumn treatment_user_treatment;
-    @FXML
-    private TableColumn treatment_user_start_date;
-    @FXML
-    private TableColumn treatment_user_end_date;
-    @FXML
-    private TableColumn treatment_user_actions;
+    public TableColumn<TreatmentCourse, String> treatment_user_actions;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        UserRenderData();
-        AdminRenderData();
-        add_record_button.setOnAction(event ->{
-            try {
-                ToAddRecord();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-        save_button.setOnAction(event -> {});
+        if (isAdmin) {
+            AdminRenderData();
+            add_record_button.setOnAction(e -> {
+                try {
+                    ToAddRecord();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+        } else {
+            UserRenderData();
+        }
+//        save_button.setOnAction(e->ToBeSaved());
     }
 
-    public TreatmentCourseController(Stage stage) {
+    public TreatmentCourseController(Stage stage, boolean isAdmin) {
         this.stage = stage;
+        this.isAdmin = isAdmin;
     }
 
     public static List<TreatmentCourse> UserReadCSV(String fileName){
@@ -84,7 +81,7 @@ public class TreatmentCourseController  implements Initializable {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    TreatmentCourse treatmentCourse = new TreatmentCourse (String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2]);
+                    TreatmentCourse treatmentCourse = new TreatmentCourse (String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2], tokens[3]);
                     data.add(treatmentCourse);
                 }
             }
@@ -120,7 +117,7 @@ public class TreatmentCourseController  implements Initializable {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    TreatmentCourse treatmentCourse = new TreatmentCourse(String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2]);
+                    TreatmentCourse treatmentCourse = new TreatmentCourse(String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2], tokens[3]);
                     data.add(treatmentCourse);
                 }
             }
@@ -150,25 +147,37 @@ public class TreatmentCourseController  implements Initializable {
         treatment_user_treatment.setCellValueFactory(new PropertyValueFactory<>("treatment"));
         treatment_user_start_date.setCellValueFactory(new PropertyValueFactory<>("start_end"));
         treatment_user_end_date.setCellValueFactory(new PropertyValueFactory<>("end_date"));
-        treatment_user_actions.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        //treatment_user_actions.setCellValueFactory(new PropertyValueFactory<>("actions"));
         treatment_user_table.setItems(list);
     }
 
     public void AdminRenderData(){
         List<TreatmentCourse> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("treatmentcourse.csv")).getPath());
         ObservableList<TreatmentCourse> list = FXCollections.observableArrayList(data);
-        treatment_admin_treatment.setCellValueFactory(new PropertyValueFactory<>("treatment"));
-        treatment_admin_start_date.setCellValueFactory(new PropertyValueFactory<>("start_end"));
-        treatment_admin_end_date.setCellValueFactory(new PropertyValueFactory<>("end_date"));
-        treatment_admin_actions.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        treatment_user_treatment.setCellValueFactory(new PropertyValueFactory<>("treatment"));
+        treatment_user_start_date.setCellValueFactory(new PropertyValueFactory<>("start_end"));
+        treatment_user_end_date.setCellValueFactory(new PropertyValueFactory<>("end_date"));
+        //treatment_user_actions.setCellValueFactory(new PropertyValueFactory<>("actions"));
         treatment_admin_table.setItems(list);
     }
 
     public void ToAddRecord() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/group57.emrsystem/newtreatmentcourse.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("newtreatmentcourse.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void ToBeSaved(){
+        String id = "0";
+        String treatment = treatment_textfield.getText();
+        String start_date = start_date_textfield.getText();
+        String end_date = end_date_textfield.getText();
+        TreatmentCourse treatmentCourse = new TreatmentCourse(id,treatment, start_date, end_date);
+        CSVHandler csv = new CSVHandler();
+        //csv.create(diagnosis);
+        //I think we need a create method, what do you suggest?
+
     }
 }
