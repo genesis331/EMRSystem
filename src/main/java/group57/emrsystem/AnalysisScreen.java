@@ -11,7 +11,7 @@ public class AnalysisScreen extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AnalysisController.class.getResource("analysis-admin.fxml"));
-        fxmlLoader.setController(new AnalysisController(stage));
+        fxmlLoader.setController(new AnalysisController(stage, true));
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setTitle("Analysis Form");
         stage.setScene(scene);

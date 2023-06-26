@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class AnalysisController implements Initializable {
     private Stage stage;
+    private Boolean isAdmin = false;
     @FXML
     private TextField date_textfield;
     @FXML
@@ -30,46 +31,43 @@ public class AnalysisController implements Initializable {
     @FXML
     private TextField result_textfield;
     @FXML
-    private Button save_button;
+    public Button save_button;
     @FXML
-    private TableView analysis_admin_table;
+    public TableView<Analysis> analysis_admin_table;
     @FXML
-    private Button add_record_button;
+    public Button add_record_button;
     @FXML
-    private TableView analysis_user_table;
+    public TableView<Analysis> analysis_user_table;
     @FXML
-    private TableColumn analysis_user_date;
+    public TableColumn<Analysis, String> analysis_user_date;
     @FXML
-    private TableColumn analysis_user_type_of_test;
+    public TableColumn<Analysis, String> analysis_user_type_of_test;
     @FXML
-    private TableColumn analysis_user_result;
+    public TableColumn<Analysis, String> analysis_user_result;
     @FXML
-    private TableColumn analysis_user_action;
-    @FXML
-    private TableColumn analysis_admin_date;
-    @FXML
-    private TableColumn analysis_admin_type_of_test;
-    @FXML
-    private TableColumn analysis_admin_result;
-    @FXML
-    private TableColumn analysis_admin_action;
+    public TableColumn<Analysis, String> analysis_user_action;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        UserRenderData();
-        AdminRenderData();
-        add_record_button.setOnAction(event ->{
-            try {
-                ToAddRecord();
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-        save_button.setOnAction(event -> {});
+        if (isAdmin) {
+            AdminRenderData();
+            add_record_button.setOnAction(e -> {
+                try {
+                    ToAddRecord();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+        } else {
+            UserRenderData();
+        }
+//        save_button.setOnAction(e->ToBeSaved());
     }
 
-    public AnalysisController(Stage stage) {
+    public AnalysisController(Stage stage, boolean isAdmin) {
         this.stage = stage;
+        this.isAdmin = isAdmin;
     }
 
     public static List<Analysis> UserReadCSV(String fileName){
@@ -157,19 +155,31 @@ public class AnalysisController implements Initializable {
     public void AdminRenderData(){
         List<Analysis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("analysis.csv")).getPath());
         ObservableList<Analysis> list = FXCollections.observableArrayList(data);
-        analysis_admin_date.setCellValueFactory(new PropertyValueFactory<>("date"));
-        analysis_admin_type_of_test.setCellValueFactory(new PropertyValueFactory<>("type_of_test"));
-        analysis_admin_result.setCellValueFactory(new PropertyValueFactory<>("result"));
-        analysis_admin_action.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        analysis_user_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        analysis_user_type_of_test.setCellValueFactory(new PropertyValueFactory<>("type_of_test"));
+        analysis_user_result.setCellValueFactory(new PropertyValueFactory<>("result"));
+        analysis_user_action.setCellValueFactory(new PropertyValueFactory<>("actions"));
         analysis_admin_table.setItems(list);
     }
 
     public void ToAddRecord() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/group57.emrsystem/newanalysis.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("newanalysis.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void ToBeSaved(){
+        String id = "0";
+        String date = date_textfield.getText();
+        String name = type_of_test_textfield.getText();
+        String result = result_textfield.getText();
+        Analysis analysis = new Analysis(id, date, name, result);
+        CSVHandler csv = new CSVHandler();
+        //csv.create(diagnosis);
+        //I think we need a create method, what do you suggest?
+
     }
 }
 
