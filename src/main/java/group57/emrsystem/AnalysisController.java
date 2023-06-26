@@ -145,20 +145,20 @@ public class AnalysisController implements Initializable {
     public void UserRenderData(){
         List<Analysis> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("analysis.csv")).getPath());
         ObservableList<Analysis> list = FXCollections.observableArrayList(data);
-        analysis_user_date.setCellValueFactory(new PropertyValueFactory<>("date"));
-        analysis_user_type_of_test.setCellValueFactory(new PropertyValueFactory<>("type_of_test"));
-        analysis_user_result.setCellValueFactory(new PropertyValueFactory<>("result"));
-        analysis_user_action.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        analysis_user_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        analysis_user_type_of_test.setCellValueFactory(new PropertyValueFactory<>("TypeOfTest"));
+        analysis_user_result.setCellValueFactory(new PropertyValueFactory<>("Result"));
+//        analysis_user_action.setCellValueFactory(new PropertyValueFactory<>("Actions"));
         analysis_user_table.setItems(list);
     }
 
     public void AdminRenderData(){
         List<Analysis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("analysis.csv")).getPath());
         ObservableList<Analysis> list = FXCollections.observableArrayList(data);
-        analysis_user_date.setCellValueFactory(new PropertyValueFactory<>("date"));
-        analysis_user_type_of_test.setCellValueFactory(new PropertyValueFactory<>("type_of_test"));
-        analysis_user_result.setCellValueFactory(new PropertyValueFactory<>("result"));
-        analysis_user_action.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        analysis_user_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        analysis_user_type_of_test.setCellValueFactory(new PropertyValueFactory<>("TypeOfTest"));
+        analysis_user_result.setCellValueFactory(new PropertyValueFactory<>("Result"));
+//        analysis_user_action.setCellValueFactory(new PropertyValueFactory<>("actions"));
         analysis_admin_table.setItems(list);
     }
 

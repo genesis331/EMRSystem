@@ -13,8 +13,16 @@ public class Analysis {
         this.result = result;
     }
     
-    public Analysis getAnalysis (){
-        return this;
+    public String getDate(){
+        return date;
+    }
+
+    public String getTypeOfTest(){
+        return type_of_test;
+    }
+
+    public String getResult(){
+        return result;
     }
 
     public void modifyid(String id){
