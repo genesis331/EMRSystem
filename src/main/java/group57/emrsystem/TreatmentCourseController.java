@@ -250,6 +250,9 @@ public class TreatmentCourseController  implements Initializable {
     }
 
     public void AdminRenderData(){
+        if (treatment_admin_table.getColumns().size() > 3) {
+            treatment_admin_table.getColumns().remove(treatment_admin_table.getColumns().size() - 1);
+        }
         TableColumn<TreatmentCourse, Void> colBtn = new TableColumn<>("Actions");
         List<TreatmentCourse> data = AdminReadCSV(Objects.requireNonNull(TreatmentCourseController.class.getResource("treatmentcourse.csv")).getPath());
         ObservableList<TreatmentCourse> list = FXCollections.observableArrayList(data);

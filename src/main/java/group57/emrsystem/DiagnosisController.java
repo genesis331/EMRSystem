@@ -252,6 +252,9 @@ public class DiagnosisController implements Initializable{
     }
 
     public void AdminRenderData() {
+        if (DiagnosisAdminTableView.getColumns().size() > 3) {
+            DiagnosisAdminTableView.getColumns().remove(DiagnosisAdminTableView.getColumns().size() - 1);
+        }
         TableColumn<Diagnosis, Void> colBtn = new TableColumn<>("Actions");
         List<Diagnosis> data = AdminReadCSV(Objects.requireNonNull(DiagnosisController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);

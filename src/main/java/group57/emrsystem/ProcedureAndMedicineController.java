@@ -288,6 +288,9 @@ public class ProcedureAndMedicineController implements Initializable {
     };
 
     public void AdminRenderData(){
+        if (tableadmin.getColumns().size() > 6) {
+            tableadmin.getColumns().remove(tableadmin.getColumns().size() - 1);
+        }
         TableColumn<ProcedureAndMedicine, Void> colBtn = new TableColumn<>("Actions");
         List<ProcedureAndMedicine> data = AdminReadCSV(Objects.requireNonNull(ProcedureAndMedicineController.class.getResource("procedureandmedicine.csv")).getPath());
         ObservableList<ProcedureAndMedicine> list = FXCollections.observableArrayList(data);

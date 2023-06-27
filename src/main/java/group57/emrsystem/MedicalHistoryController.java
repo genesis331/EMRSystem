@@ -247,6 +247,9 @@ public class MedicalHistoryController implements Initializable {
     };
 
     public void AdminRenderData() {
+        if (MedHisAdminTableView.getColumns().size() > 7) {
+            MedHisAdminTableView.getColumns().remove(MedHisAdminTableView.getColumns().size() - 1);
+        }
         TableColumn<MedicalHistory, Void> colBtn = new TableColumn<>("Actions");
         List<MedicalHistory> data = AdminReadCSV(Objects.requireNonNull(MedicalHistoryController.class.getResource("medicalhistory.csv")).getPath());
         ObservableList<MedicalHistory> list = FXCollections.observableArrayList(data);
