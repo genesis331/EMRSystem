@@ -53,7 +53,7 @@
       </VBox>
       <HBox alignment="TOP_CENTER">
          <children>
-            <Button fx:id="save_button" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #1890FF;" text="Save" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="save_button" defaultButton="true" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #1890FF;" text="Save" textAlignment="CENTER" textFill="WHITE">
                <padding>
                   <Insets bottom="10.0" left="35.0" right="35.0" top="10.0" />
                </padding>
