@@ -93,6 +93,8 @@ public class PatientController implements Initializable {
     @FXML
     public TableColumn<Patient, String> patientAddress;
 
+    private List<String> data = new ArrayList<>();
+
     public void ToAddRecord() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("newpatient.fxml"));
         Stage stage = new Stage();
@@ -147,6 +149,62 @@ public class PatientController implements Initializable {
         stage.show();
     }
 
+    private void saveData() {
+        String nationalID = nationalIDField.getText();
+        String name = nameField.getText();
+        String age = ageField.getText();
+        String gender = genderField.getText();
+        String contactNumber = contactNumberField.getText();
+        String address = addressArea.getText();
+        String delimiter = ",";
+        BufferedReader bReader = null;
+        File file = new File(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
+
+        try {
+            String line = "";
+            bReader = new BufferedReader(new FileReader(file));
+            bReader.readLine();
+            while ((line = bReader.readLine()) != null) {
+                String[] tokens = line.split(delimiter);
+                if (tokens.length > 0) {
+                    if (tokens[2].equals(nationalID)) {
+                        data.add(tokens[0] + "," + name + "," + nationalID + "," + age + "," + gender + "," + address + "," + contactNumber + "\n");
+                    } else {
+                        data.add(line + "\n");
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            try {
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bReader != null)
+                    bReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        List<String> stringArrays = new ArrayList<>();
+        stringArrays.add("id,name,national_id,age,gender,address,contact_no\n");
+        stringArrays.addAll(data);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Objects.requireNonNull(NewDiagnosisController.class.getResource("patient.csv")).getPath()))) {
+            for (String stringArray : stringArrays) {
+                writer.write(stringArray);
+            }
+            System.out.println("Data has been written to the file.");
+        } catch (IOException e) {
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (isAdmin) {
@@ -195,6 +253,9 @@ public class PatientController implements Initializable {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+            });
+            saveButton.setOnAction(e -> {
+                saveData();
             });
             logoutButtonUser.setOnAction(e -> {
                 stage.close();
