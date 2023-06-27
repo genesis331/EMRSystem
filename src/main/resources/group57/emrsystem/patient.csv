@@ -1,1 +1,2 @@
-id, name, national_id, age, gender, address, contact_no
+id,name,national_id,age,gender,address,contact_no
+1,Wong,A12345,20,Male,12 Jalan ABC,0123456789
