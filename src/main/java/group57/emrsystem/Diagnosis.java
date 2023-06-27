@@ -3,15 +3,15 @@ package group57.emrsystem;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Diagnosis {
-    private int id;
+    private SimpleStringProperty id;
     private SimpleStringProperty date;
     private SimpleStringProperty name;
     private SimpleStringProperty diagnosed_sickness;
     public final static String fileName = "diagnosis.csv";
     
 
-    public Diagnosis(int id, String date, String name, String diagnosed_sickness) {
-        this.id = id;
+    public Diagnosis(String id, String date, String name, String diagnosed_sickness) {
+        this.id = new SimpleStringProperty(id);
         this.date = new SimpleStringProperty(date);
         this.name = new SimpleStringProperty(name);
         this.diagnosed_sickness = new SimpleStringProperty(diagnosed_sickness);
@@ -19,7 +19,7 @@ public class Diagnosis {
     }
 
     public String getId() {
-        return Integer.toString(id);
+        return id.get();
     }
 
     public String getDate() {
