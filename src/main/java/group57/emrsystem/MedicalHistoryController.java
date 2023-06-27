@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class MedicalHistoryController {
+public class MedicalHistoryController implements Initializable {
     private Stage stage;
     private Boolean isAdmin = false;
     @FXML
@@ -46,13 +46,14 @@ public class MedicalHistoryController {
     private TableColumn MedHisUserObservationsColumn;
     private TableColumn MedHisUserMajorComplicationsColumn;
     private TableColumn MedHisUserAttendingDoctorColumn;
+    private TableColumn MedHisUserActionsColumn;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (isAdmin) {
             AdminRenderData();
-            DiagnosisAdminAddRecordButton.setOnAction(e -> {
+            MedHisAdminAddRecordButton.setOnAction(e -> {
                 try {
                     ToAddRecord();
                 } catch (IOException ex) {
@@ -67,11 +68,11 @@ public class MedicalHistoryController {
 
 
 
-    public static List<Diagnosis> UserReadCSV(String fileName) {
+    public static List<MedicalHistory> UserReadCSV(String fileName) {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<Diagnosis> data = new ArrayList<Diagnosis>();
+        List<MedicalHistory> data = new ArrayList<MedicalHistory>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -79,8 +80,8 @@ public class MedicalHistoryController {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    Diagnosis diagnosis = new Diagnosis(Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3]);
-                    data.add(diagnosis);
+                    MedicalHistory medicalhistory = new MedicalHistory(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7]);
+                    data.add(medicalhistory);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -103,11 +104,11 @@ public class MedicalHistoryController {
         return data;
     }
 
-    public static List<Diagnosis> AdminReadCSV(String fileName) {
+    public static List<MedicalHistory> AdminReadCSV(String fileName) {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<Diagnosis> data = new ArrayList<Diagnosis>();
+        List<MedicalHistory> data = new ArrayList<MedicalHistory>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -115,8 +116,8 @@ public class MedicalHistoryController {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    Diagnosis diagnosis = new Diagnosis(Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3]);
-                    data.add(diagnosis);
+                    MedicalHistory medicalhistory = new MedicalHistory(tokens[0], tokens[1], tokens[2], tokens[3], tokens [4], tokens[5], tokens[6], tokens[7]);
+                    data.add(medicalhistory);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -139,21 +140,31 @@ public class MedicalHistoryController {
         return data;
     }
     public void UserRenderData() {
-        List<Diagnosis> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
-        ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
-        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("DiagnosedSickness"));
-        DiagnosisUserTableView.setItems(list);
+        List<MedicalHistory> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("medicalhistory.csv")).getPath());
+        ObservableList<MedicalHistory> list = FXCollections.observableArrayList(data);
+        MedHisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        MedHisUserTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        MedHisUserWardColumn.setCellValueFactory(new PropertyValueFactory<>("ward"));
+        MedHisUserTreatmentResultsColumn.setCellValueFactory(new PropertyValueFactory<>("treatmentresults"));
+        MedHisUserObservationsColumn.setCellValueFactory(new PropertyValueFactory<>("observations"));
+        MedHisUserMajorComplicationsColumn.setCellValueFactory(new PropertyValueFactory<>("majorcpmplications"));
+        MedHisUserAttendingDoctorColumn.setCellValueFactory(new PropertyValueFactory<>("attendingdoctor"));
+        MedHisUserActionsColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        MedHisUserTableView.setItems(list);
     }
 
     public void AdminRenderData() {
-        List<Diagnosis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
-        ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
-        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("DiagnosedSickness"));
-        DiagnosisAdminTableView.setItems(list);
+        List<MedicalHistory> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("medicalhistory.csv")).getPath());
+        ObservableList<MedicalHistory> list = FXCollections.observableArrayList(data);
+        MedHisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        MedHisUserTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        MedHisUserWardColumn.setCellValueFactory(new PropertyValueFactory<>("ward"));
+        MedHisUserTreatmentResultsColumn.setCellValueFactory(new PropertyValueFactory<>("treatmentresults"));
+        MedHisUserObservationsColumn.setCellValueFactory(new PropertyValueFactory<>("observations"));
+        MedHisUserMajorComplicationsColumn.setCellValueFactory(new PropertyValueFactory<>("majorcpmplications"));
+        MedHisUserAttendingDoctorColumn.setCellValueFactory(new PropertyValueFactory<>("attendingdoctor"));
+        MedHisUserActionsColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        MedHisUserTableView.setItems(list);
     }
 
     public void ToAddRecord() throws IOException {
@@ -165,20 +176,23 @@ public class MedicalHistoryController {
     }
 
     public void ToBeSaved(){
-        int id = 0;
-        String date = DiagnosisDateTextField.getText();
-        String name = DiagnosisNameTextField.getText();
-        String diagnosed_sickness = DiagnosisDiagnosedSicknessTextField.getText();
-        Diagnosis diagnosis = new Diagnosis(id, date, name, diagnosed_sickness);
+        String id = "0";
+        String date = MedHisDateTextField.getText();
+        String time = MedHisTimeTextField.getText();
+        String ward = MedHisTimeTextField.getText();
+        String treatment_results = MedHisTreatmentResultsTextField.getText();
+        String observations = MedHisObervationTextField.getText();
+        String major_complications = MedHisMajorComplicationsTextField.getText();
+        String attending_doctors = MedHisAttendingDoctorTextField.getText();
+        MedicalHistory medicalhistory = new MedicalHistory(id, date, time,ward,treatment_results, observations, major_complications, attending_doctors);
         CSVHandler csv = new CSVHandler();
         //csv.create(diagnosis);
         //I think we need a create method, what do you suggest?
 
     }
-}
+
     public MedicalHistoryController(Stage stage, boolean isAdmin)
     {
-
         this.stage = stage;
         this.isAdmin = isAdmin;
     }

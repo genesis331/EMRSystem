@@ -175,9 +175,9 @@ public class DiagnosisController implements Initializable{
     public void UserRenderData() {
         List<Diagnosis> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
-        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("DiagnosedSickness"));
+        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("diagnosedsickness"));
         DiagnosisUserTableView.setItems(list);
     }
 
@@ -185,9 +185,9 @@ public class DiagnosisController implements Initializable{
         TableColumn<Diagnosis, Void> colBtn = new TableColumn("Actions");
         List<Diagnosis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
-        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("DiagnosedSickness"));
+        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("diagnosedsickness"));
         colBtn.setCellFactory(cellFactory);
         DiagnosisAdminTableView.getColumns().add(colBtn);
         DiagnosisAdminTableView.setItems(list);
