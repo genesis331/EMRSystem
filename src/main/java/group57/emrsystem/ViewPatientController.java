@@ -56,6 +56,9 @@ public class ViewPatientController implements Initializable {
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Button deleteButton;
+
     private List<String> data = new ArrayList<>();
 
     public ViewPatientController(Stage stage, String id) {
@@ -214,6 +217,55 @@ public class ViewPatientController implements Initializable {
         }
     }
 
+    private void deleteData() {
+        List<String> data = new ArrayList<>();
+        String delimiter = ",";
+        BufferedReader bReader = null;
+        File file = new File(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
+
+        try {
+            String line = "";
+            bReader = new BufferedReader(new FileReader(file));
+            bReader.readLine();
+            while ((line = bReader.readLine()) != null) {
+                String[] tokens = line.split(delimiter);
+                if (tokens.length > 0) {
+                    if (!tokens[0].equals(id)) {
+                        data.add(line + "\n");
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            try {
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bReader != null)
+                    bReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        List<String> stringArrays = new ArrayList<>();
+        stringArrays.add("id,name,national_id,age,gender,address,contact_no\n");
+        stringArrays.addAll(data);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Objects.requireNonNull(NewDiagnosisController.class.getResource("patient.csv")).getPath()))) {
+            for (String stringArray : stringArrays) {
+                writer.write(stringArray);
+            }
+            System.out.println("Data has been written to the file.");
+        } catch (IOException e) {
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         viewMedicalHistoryButton.setOnAction(e -> {
@@ -253,6 +305,9 @@ public class ViewPatientController implements Initializable {
         });
         saveButton.setOnAction(e -> {
             saveData();
+        });
+        deleteButton.setOnAction(e -> {
+            deleteData();
         });
         renderData();
     }

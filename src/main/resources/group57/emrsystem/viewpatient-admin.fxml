@@ -229,7 +229,7 @@
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Button>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #FF4D4F;" text="Delete" textFill="#ff4d4f" wrapText="true">
+                        <Button fx:id="deleteButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #FF4D4F;" text="Delete" textFill="#ff4d4f" wrapText="true">
                            <padding>
                               <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                            </padding>
