@@ -87,7 +87,7 @@ public class NewAnalysisController {
 //        public void ToBeSaved() {
 //                save_button.setOnAction(e -> {
 //                        ;
-//                        int id = 0;
+//                        String id = "0";
 //                        String date = date_textfield.getText();
 //                        String type_of_test = type_of_test_textfield.getText();
 //                        String result = result_textfield.getText();
@@ -97,4 +97,5 @@ public class NewAnalysisController {
 //                        n.create(diagnosis);
 //                });
 //        }
+
 }
