@@ -17,9 +17,9 @@ public class Diagnosis {
         this.diagnosed_sickness = new SimpleStringProperty(diagnosed_sickness);
         
     }
-    public void modifyid(int id){
 
-        this.id = id;
+    public String getId() {
+        return Integer.toString(id);
     }
 
     public String getDate() {
