@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 public class PatientController implements Initializable {
     private Stage stage;
 
-    private Boolean isAdmin = false;
+    private Boolean isAdmin;
 
     private String username;
 
@@ -255,6 +255,17 @@ public class PatientController implements Initializable {
                     btn.setOnAction((ActionEvent event) -> {
                         Patient data = getTableView().getItems().get(getIndex());
                         System.out.println("selectedData: " + data);
+                        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("viewpatient-admin.fxml"));
+                        fxmlLoader.setController(new ViewPatientController(stage, "1"));
+                        Stage stage = new Stage();
+                        Scene scene = null;
+                        try {
+                            scene = new Scene(fxmlLoader.load(), 1080, 720);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        stage.setScene(scene);
+                        stage.show();
                     });
                 }
 

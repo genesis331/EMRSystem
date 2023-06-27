@@ -25,6 +25,10 @@ public class Patient {
         return name.get();
     }
 
+    public String getID() {
+        return id;
+    }
+
     public String getNationalID() {
         return national_id.get();
     }

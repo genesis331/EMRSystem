@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class DiagnosisController implements Initializable{
     private Stage stage;
-    private Boolean isAdmin = false;
+    private Boolean isAdmin;
     private String username;
 
     @FXML
@@ -122,11 +122,23 @@ public class DiagnosisController implements Initializable{
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
             bReader.readLine();
-            while ((line = bReader.readLine()) != null) {
-                String[] tokens = line.split(delimiter);
-                if (tokens.length > 0) {
-                    Diagnosis diagnosis = new Diagnosis(tokens[1], tokens[2], tokens[3], tokens[4]);
-                    data.add(diagnosis);
+            if (username.equals("admin")) {
+                while ((line = bReader.readLine()) != null) {
+                    String[] tokens = line.split(delimiter);
+                    if (tokens.length > 0) {
+                        Diagnosis diagnosis = new Diagnosis(tokens[1], tokens[2], tokens[3], tokens[4]);
+                        data.add(diagnosis);
+                    }
+                }
+            } else {
+                while ((line = bReader.readLine()) != null) {
+                    String[] tokens = line.split(delimiter);
+                    if (tokens.length > 0) {
+                        if (tokens[1].equals(username)) {
+                            Diagnosis diagnosis = new Diagnosis(tokens[1], tokens[2], tokens[3], tokens[4]);
+                            data.add(diagnosis);
+                        }
+                    }
                 }
             }
         } catch (FileNotFoundException e) {

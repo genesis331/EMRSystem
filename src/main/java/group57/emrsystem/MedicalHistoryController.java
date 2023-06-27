@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class MedicalHistoryController implements Initializable {
     private Stage stage;
-    private Boolean isAdmin = false;
+    private Boolean isAdmin;
     private String username;
     @FXML
     public TextField MedHisDateTextField;
@@ -114,11 +114,23 @@ public class MedicalHistoryController implements Initializable {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
             bReader.readLine();
-            while ((line = bReader.readLine()) != null) {
-                String[] tokens = line.split(delimiter);
-                if (tokens.length > 0) {
-                    MedicalHistory medicalhistory = new MedicalHistory(tokens[1], tokens[2], tokens[3], tokens[4], tokens [5], tokens[6], tokens[7], tokens[8]);
-                    data.add(medicalhistory);
+            if (username.equals("admin")) {
+                while ((line = bReader.readLine()) != null) {
+                    String[] tokens = line.split(delimiter);
+                    if (tokens.length > 0) {
+                        MedicalHistory medicalhistory = new MedicalHistory(tokens[1], tokens[2], tokens[3], tokens[4], tokens [5], tokens[6], tokens[7], tokens[8]);
+                        data.add(medicalhistory);
+                    }
+                }
+            } else {
+                while ((line = bReader.readLine()) != null) {
+                    String[] tokens = line.split(delimiter);
+                    if (tokens.length > 0) {
+                        if (tokens[1].equals(username)) {
+                            MedicalHistory medicalhistory = new MedicalHistory(tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8]);
+                            data.add(medicalhistory);
+                        }
+                    }
                 }
             }
         } catch (FileNotFoundException e) {

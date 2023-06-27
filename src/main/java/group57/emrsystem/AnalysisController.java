@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class AnalysisController implements Initializable {
     private Stage stage;
-    private Boolean isAdmin = false;
+    private Boolean isAdmin;
     private String username;
     @FXML
     private TextField date_textfield;
@@ -115,11 +115,23 @@ public class AnalysisController implements Initializable {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
             bReader.readLine();
-            while ((line = bReader.readLine()) != null) {
-                String[] tokens = line.split(delimiter);
-                if (tokens.length > 0) {
-                    Analysis analysis = new Analysis(String.valueOf(Integer.parseInt(tokens[1])), tokens[2], tokens[3], tokens[4]);
-                    data.add(analysis);
+            if (username.equals("admin")) {
+                while ((line = bReader.readLine()) != null) {
+                    String[] tokens = line.split(delimiter);
+                    if (tokens.length > 0) {
+                        Analysis analysis = new Analysis(String.valueOf(Integer.parseInt(tokens[1])), tokens[2], tokens[3], tokens[4]);
+                        data.add(analysis);
+                    }
+                }
+            } else {
+                while ((line = bReader.readLine()) != null) {
+                    String[] tokens = line.split(delimiter);
+                    if (tokens.length > 0) {
+                        if (tokens[1].equals(username)) {
+                            Analysis analysis = new Analysis(String.valueOf(Integer.parseInt(tokens[1])), tokens[2], tokens[3], tokens[4]);
+                            data.add(analysis);
+                        }
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
