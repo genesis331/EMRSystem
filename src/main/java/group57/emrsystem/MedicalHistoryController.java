@@ -165,6 +165,55 @@ public class MedicalHistoryController implements Initializable {
         MedHisUserTableView.setItems(list);
     }
 
+    private void ToDeleteRecord(String target) {
+        List<String> data = new ArrayList<>();
+        String delimiter = ",";
+        BufferedReader bReader = null;
+        File file = new File(Objects.requireNonNull(PatientController.class.getResource("medicalhistory.csv")).getPath());
+
+        try {
+            String line = "";
+            bReader = new BufferedReader(new FileReader(file));
+            bReader.readLine();
+            while ((line = bReader.readLine()) != null) {
+                String[] tokens = line.split(delimiter);
+                if (tokens.length > 0) {
+                    if (!tokens[1].equals(target)) {
+                        data.add(line + "\n");
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            try {
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bReader != null)
+                    bReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        List<String> stringArrays = new ArrayList<>();
+        stringArrays.add("username,id,date,time,ward,treatmentresults,observation,majorcomplications,attendingdoctor\n");
+        stringArrays.addAll(data);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Objects.requireNonNull(NewDiagnosisController.class.getResource("medicalhistory.csv")).getPath()))) {
+            for (String stringArray : stringArrays) {
+                writer.write(stringArray);
+            }
+            System.out.println("Data has been written to the file.");
+        } catch (IOException e) {
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
+        }
+    }
+
     Callback<TableColumn<MedicalHistory, Void>, TableCell<MedicalHistory, Void>> cellFactory = new Callback<TableColumn<MedicalHistory, Void>, TableCell<MedicalHistory, Void>>() {
         @Override
         public TableCell<MedicalHistory, Void> call(final TableColumn<MedicalHistory, Void> param) {
@@ -175,7 +224,7 @@ public class MedicalHistoryController implements Initializable {
                 {
                     btn.setOnAction((ActionEvent event) -> {
                         MedicalHistory data = getTableView().getItems().get(getIndex());
-                        System.out.println("selectedData: " + data);
+                        ToDeleteRecord(data.getId());
                     });
                 }
 

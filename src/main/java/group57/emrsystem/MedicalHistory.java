@@ -23,6 +23,10 @@ public class MedicalHistory {
         this.attending_doctor = new SimpleStringProperty(attending_doctor);
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getDate() {
         return date.get();
     }

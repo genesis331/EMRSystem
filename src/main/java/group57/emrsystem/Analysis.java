@@ -12,7 +12,11 @@ public class Analysis {
         this.type_of_test = type_of_test;
         this.result = result;
     }
-    
+
+    public String getId(){
+        return id;
+    }
+
     public String getDate(){
         return date;
     }

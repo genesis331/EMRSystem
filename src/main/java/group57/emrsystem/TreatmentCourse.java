@@ -14,6 +14,10 @@ public class TreatmentCourse {
          this.start_date = new SimpleStringProperty(start_date);
          this.end_date = new SimpleStringProperty(end_date);
      }
+
+        public String getId(){
+            return id;
+        }
      
      public String getTreatment(){
          return treatment.get();
