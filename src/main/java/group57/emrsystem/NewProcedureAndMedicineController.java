@@ -1,6 +1,5 @@
 package group57.emrsystem;
 
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -13,19 +12,25 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class NewAnalysisController implements Initializable {
+public class NewProcedureAndMedicineController implements Initializable {
         private Stage stage;
 
         @FXML
         private ChoiceBox PatientIdDropdown;
         @FXML
-        private TextField date_textfield;
+        public TextField textdateprocedure;
         @FXML
-        private TextField type_of_test_textfield;
+        public TextField texttimeprocedure;
         @FXML
-        private TextField result_textfield;
+        public TextField textproceduretypeprocedure;
         @FXML
-        public Button save_button;
+        public TextField textmedicationprocedure;
+        @FXML
+        public TextField textamountprocedure;
+        @FXML
+        public TextField textfrequencyprocedure;
+        @FXML
+        public Button savebuttonprocedure;
 
         private List<String> usedIds = new ArrayList<>();
         private List<String> data = new ArrayList<>();
@@ -103,20 +108,23 @@ public class NewAnalysisController implements Initializable {
         @FXML
         private void ToBeSaved(){
                 String username = PatientIdDropdown.getValue().toString();
-                String date = date_textfield.getText();
-                String type_of_test = type_of_test_textfield.getText();
-                String result = result_textfield.getText();
+                String date = textdateprocedure.getText();
+                String time = texttimeprocedure.getText();
+                String type = textproceduretypeprocedure.getText();
+                String medication = textmedicationprocedure.getText();
+                String amount = textamountprocedure.getText();
+                String frequency = textfrequencyprocedure.getText();
                 readCSV();
                 String id = String.valueOf((int) (Math.random() * 10));
                 while (usedIds.contains(id)) {
                         id = String.valueOf((int) (Math.random() * 10));
                 }
                 List<String> stringArrays = new ArrayList<>();
-                stringArrays.add("username,id,date,type_of_test,result\n");
+                stringArrays.add("username,id,date,time,proceduretype,medication,amount,frequency\n");
                 stringArrays.addAll(data);
-                String newAnalysisString = username + "," + id + "," + date + "," + type_of_test + "," + result + "\n";
-                stringArrays.add(newAnalysisString);
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(Objects.requireNonNull(NewAnalysisController.class.getResource("analysis.csv")).getPath()))) {
+                String newProcedureAndMedicineString = username + "," + id + "," + date + "," + time + "," + type + "," + medication + "," + amount + "," + frequency + "\n";
+                stringArrays.add(newProcedureAndMedicineString);
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(Objects.requireNonNull(NewDiagnosisController.class.getResource("procedureandmedicine.csv")).getPath()))) {
                         for (String stringArray : stringArrays) {
                                 writer.write(stringArray);
                         }
@@ -128,6 +136,6 @@ public class NewAnalysisController implements Initializable {
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle){
-                save_button.setOnAction(actionEvent -> ToBeSaved());
+                savebuttonprocedure.setOnAction(actionEvent -> ToBeSaved());
         }
 }

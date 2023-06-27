@@ -7,15 +7,12 @@ public class Diagnosis {
     private SimpleStringProperty date;
     private SimpleStringProperty name;
     private SimpleStringProperty diagnosed_sickness;
-    public final static String fileName = "diagnosis.csv";
-    
 
     public Diagnosis(String id, String date, String name, String diagnosed_sickness) {
         this.id = new SimpleStringProperty(id);
         this.date = new SimpleStringProperty(date);
         this.name = new SimpleStringProperty(name);
         this.diagnosed_sickness = new SimpleStringProperty(diagnosed_sickness);
-        
     }
 
     public String getId() {

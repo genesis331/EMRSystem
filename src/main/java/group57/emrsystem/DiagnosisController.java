@@ -187,7 +187,7 @@ public class DiagnosisController implements Initializable{
 
     public void AdminRenderData() {
         TableColumn<Diagnosis, Void> colBtn = new TableColumn<>("Actions");
-        List<Diagnosis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
+        List<Diagnosis> data = AdminReadCSV(Objects.requireNonNull(DiagnosisController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
         DiagnosisAdminDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
         DiagnosisAdminNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -198,9 +198,10 @@ public class DiagnosisController implements Initializable{
     }
 
     public void ToAddRecord() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("newdiagnosis.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newdiagnosis.fxml"));
+        fxmlLoader.setController(new NewDiagnosisController());
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
-        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }

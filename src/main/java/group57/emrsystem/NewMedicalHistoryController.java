@@ -3,18 +3,22 @@ package group57.emrsystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class NewMedicalHistoryController implements Initializable {
     private Stage stage;
     private Boolean isAdmin = false;
+
+    @FXML
+    private ChoiceBox PatientIdDropdown;
     @FXML
     private TextField MedHisDateTextField;
     private TextField MedHisTimeTextField;
@@ -24,28 +28,113 @@ public class NewMedicalHistoryController implements Initializable {
     private TextField MedHisMajorComplicationsTextField;
     private TextField MedHisAttendingDoctorTextField;
     private Button MedHisSaveButton;
-    private TableView MedHisUserTableView;
-    private TableView MedHisAdminTableView;
-    private Button MedHisAdminAddRecordButton;
-    private TableColumn MedHisUserDateColumn;
-    private TableColumn MedHisUserTimeColumn;
-    private TableColumn MedHisUserWardColumn;
-    private TableColumn MedHisUserTreatmentResultsColumn;
-    private TableColumn MedHisUserObservationsColumn;
-    private TableColumn MedHisUserMajorComplicationsColumn;
-    private TableColumn MedHisUserAttendingDoctorColumn;
-    private TableColumn MedHisUserActionsColumn;
+
+    private List<String> usedIds = new ArrayList<>();
+    private List<String> data = new ArrayList<>();
+
+    private void readCSV() {
+        String delimiter = ",";
+        BufferedReader bReader = null;
+        File file = new File(Objects.requireNonNull(PatientController.class.getResource("analysis.csv")).getPath());
+
+        try {
+            String line = "";
+            bReader = new BufferedReader(new FileReader(file));
+            bReader.readLine();
+            while ((line = bReader.readLine()) != null) {
+                String[] tokens = line.split(delimiter);
+                data.add(line + "\n");
+                if (tokens.length > 0) {
+                    usedIds.add(tokens[1]);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            try {
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bReader != null)
+                    bReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void initDropdown() {
+        String delimiter = ",";
+        BufferedReader bReader = null;
+        File file = new File(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
+        List<String> data = new ArrayList<>();
+        try {
+            String line = "";
+            bReader = new BufferedReader(new FileReader(file));
+            bReader.readLine();
+            while ((line = bReader.readLine()) != null) {
+                String[] tokens = line.split(delimiter);
+                if (tokens.length > 0) {
+                    data.add(tokens[2]);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            try {
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bReader != null)
+                    bReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        PatientIdDropdown.getItems().addAll(data);
+    }
 
     @FXML
-    private void ToBeSaved(ActionEvent event){
-        MedHisSaveButton.setOnAction(e-> {
-
-        });
+    private void ToBeSaved(){
+        String username = PatientIdDropdown.getValue().toString();
+        String date = MedHisDateTextField.getText();
+        String time = MedHisTimeTextField.getText();
+        String ward = MedHisWardTextField.getText();
+        String treatmentResults = MedHisTreatmentResultsTextField.getText();
+        String observations = MedHisObservationsTextField.getText();
+        String majorComplications = MedHisMajorComplicationsTextField.getText();
+        String attendingDoctor = MedHisAttendingDoctorTextField.getText();
+        readCSV();
+        String id = String.valueOf((int) (Math.random() * 10));
+        while (usedIds.contains(id)) {
+            id = String.valueOf((int) (Math.random() * 10));
+        }
+        List<String> stringArrays = new ArrayList<>();
+        stringArrays.add("username,id,date,time,ward,treatmentresults,observation,majorcomplications,attendingdoctor\n");
+        stringArrays.addAll(data);
+        String newMedicalHistoryString = username + "," + id + "," + date + "," + time + "," + ward + "," + treatmentResults + "," + observations + "," + majorComplications + "," + attendingDoctor + "\n";
+        stringArrays.add(newMedicalHistoryString);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Objects.requireNonNull(NewDiagnosisController.class.getResource("medicalhistory.csv")).getPath()))) {
+            for (String stringArray : stringArrays) {
+                writer.write(stringArray);
+            }
+            System.out.println("Data has been written to the file.");
+        } catch (IOException e) {
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        MedHisSaveButton.setOnAction(this :: ToBeSaved);
+        MedHisSaveButton.setOnAction(actionEvent -> ToBeSaved());
     }
 }
 
