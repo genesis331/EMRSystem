@@ -145,7 +145,7 @@ public class AnalysisController implements Initializable {
     }
 
     public void UserRenderData(){
-        List<Analysis> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("analysis.csv")).getPath());
+        List<Analysis> data = UserReadCSV(Objects.requireNonNull(AnalysisController.class.getResource("analysis.csv")).getPath());
         ObservableList<Analysis> list = FXCollections.observableArrayList(data);
         analysis_user_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
         analysis_user_type_of_test.setCellValueFactory(new PropertyValueFactory<>("TypeOfTest"));
@@ -182,7 +182,7 @@ public class AnalysisController implements Initializable {
 
     public void AdminRenderData(){
         TableColumn<Analysis, Void> colBtn = new TableColumn<>("Actions");
-        List<Analysis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("analysis.csv")).getPath());
+        List<Analysis> data = AdminReadCSV(Objects.requireNonNull(AnalysisController.class.getResource("analysis.csv")).getPath());
         ObservableList<Analysis> list = FXCollections.observableArrayList(data);
         analysis_user_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
         analysis_user_type_of_test.setCellValueFactory(new PropertyValueFactory<>("TypeOfTest"));

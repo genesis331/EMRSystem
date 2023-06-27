@@ -177,7 +177,7 @@ public class TreatmentCourseController  implements Initializable {
     };
 
     public void UserRenderData(){
-        List<TreatmentCourse> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("treatmentcourse.csv")).getPath());
+        List<TreatmentCourse> data = UserReadCSV(Objects.requireNonNull(TreatmentCourseController.class.getResource("treatmentcourse.csv")).getPath());
         ObservableList<TreatmentCourse> list = FXCollections.observableArrayList(data);
         treatment_user_treatment.setCellValueFactory(new PropertyValueFactory<>("Treatment"));
         treatment_user_start_date.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
@@ -187,7 +187,7 @@ public class TreatmentCourseController  implements Initializable {
 
     public void AdminRenderData(){
         TableColumn<TreatmentCourse, Void> colBtn = new TableColumn<>("Actions");
-        List<TreatmentCourse> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("treatmentcourse.csv")).getPath());
+        List<TreatmentCourse> data = AdminReadCSV(Objects.requireNonNull(TreatmentCourseController.class.getResource("treatmentcourse.csv")).getPath());
         ObservableList<TreatmentCourse> list = FXCollections.observableArrayList(data);
         treatment_admin_treatment.setCellValueFactory(new PropertyValueFactory<>("Treatment"));
         treatment_admin_start_date.setCellValueFactory(new PropertyValueFactory<>("StartDate"));

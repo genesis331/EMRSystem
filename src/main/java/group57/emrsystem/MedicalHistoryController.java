@@ -142,7 +142,7 @@ public class MedicalHistoryController implements Initializable {
         return data;
     }
     public void UserRenderData() {
-        List<MedicalHistory> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("medicalhistory.csv")).getPath());
+        List<MedicalHistory> data = UserReadCSV(Objects.requireNonNull(MedicalHistoryController.class.getResource("medicalhistory.csv")).getPath());
         ObservableList<MedicalHistory> list = FXCollections.observableArrayList(data);
         MedHisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
         MedHisUserTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
@@ -183,7 +183,7 @@ public class MedicalHistoryController implements Initializable {
 
     public void AdminRenderData() {
         TableColumn<MedicalHistory, Void> colBtn = new TableColumn<>("Actions");
-        List<MedicalHistory> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("medicalhistory.csv")).getPath());
+        List<MedicalHistory> data = AdminReadCSV(Objects.requireNonNull(MedicalHistoryController.class.getResource("medicalhistory.csv")).getPath());
         ObservableList<MedicalHistory> list = FXCollections.observableArrayList(data);
         MedHisAdminDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
         MedHisAdminTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));

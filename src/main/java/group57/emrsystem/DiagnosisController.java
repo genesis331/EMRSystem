@@ -177,7 +177,7 @@ public class DiagnosisController implements Initializable{
     };
 
     public void UserRenderData() {
-        List<Diagnosis> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
+        List<Diagnosis> data = UserReadCSV(Objects.requireNonNull(DiagnosisController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
         DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
         DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));

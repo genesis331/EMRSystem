@@ -184,7 +184,7 @@ public class ProcedureAndMedicineController implements Initializable {
     }
 
     public void UserRenderData(){
-        List<ProcedureAndMedicine> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("procedureandmedicine.csv")).getPath());
+        List<ProcedureAndMedicine> data = UserReadCSV(Objects.requireNonNull(ProcedureAndMedicineController.class.getResource("procedureandmedicine.csv")).getPath());
         ObservableList<ProcedureAndMedicine> list = FXCollections.observableArrayList(data);
         table_date_procedure.setCellValueFactory(new PropertyValueFactory<>("Date"));
         table_time_procedure.setCellValueFactory(new PropertyValueFactory<>("Time"));
@@ -224,7 +224,7 @@ public class ProcedureAndMedicineController implements Initializable {
 
     public void AdminRenderData(){
         TableColumn<ProcedureAndMedicine, Void> colBtn = new TableColumn<>("Actions");
-        List<ProcedureAndMedicine> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("procedureandmedicine.csv")).getPath());
+        List<ProcedureAndMedicine> data = AdminReadCSV(Objects.requireNonNull(ProcedureAndMedicineController.class.getResource("procedureandmedicine.csv")).getPath());
         ObservableList<ProcedureAndMedicine> list = FXCollections.observableArrayList(data);
         table_date_procedure.setCellValueFactory(new PropertyValueFactory<>("Date"));
         table_time_procedure.setCellValueFactory(new PropertyValueFactory<>("Time"));
