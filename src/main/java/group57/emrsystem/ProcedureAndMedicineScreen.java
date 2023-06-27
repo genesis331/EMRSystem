@@ -10,8 +10,8 @@ import java.io.IOException;
 public class ProcedureAndMedicineScreen extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProcedureAndMedicineController.class.getResource("procedureandmedicine-admin.fxml"));
-        fxmlLoader.setController(new ProcedureAndMedicineController(stage));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProcedureController.class.getResource("procedureandmedicine-admin.fxml"));
+        fxmlLoader.setController(new ProcedureController(stage));
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setTitle("Procedure & Medicine Form");
         stage.setScene(scene);
