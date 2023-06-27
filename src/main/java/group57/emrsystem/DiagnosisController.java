@@ -208,7 +208,7 @@ public class DiagnosisController implements Initializable{
     }
 
     public void ToBeSaved(){
-        int id = 0;
+        String id = "0";
         String date = DiagnosisDateTextField.getText();
         String name = DiagnosisNameTextField.getText();
         String diagnosed_sickness = DiagnosisDiagnosedSicknessTextField.getText();
