@@ -53,38 +53,38 @@ public class NewProcedureController {
         private String header = "id,date,time,type,medication,amount,frequency,actions";
 
 
-        public void writeCSV(List<Procedure> Procedures, String fileName) {
-            FileWriter fileWriter = null;
-            try {
-                File file = new File(fileName);
-                fileWriter = new FileWriter(file);
-                fileWriter.append(header);
-                fileWriter.append(newline);
-
-                // process content line by line
-                for (Procedure procedure : Procedures) {
-                    fileWriter.append(String.valueOf(procedure.getDate()));
-                    fileWriter.append(delimiter);
-                    fileWriter.append(procedure.getTime());
-                    fileWriter.append(delimiter);
-                    fileWriter.append(String.valueOf(procedure.getType()));
-                    fileWriter.append(delimiter);
-                    fileWriter.append(String.valueOf(procedure.getDiagnosedSickness()));
-                    fileWriter.append(newline);
-                }
-            } catch (Exception e) {
-                // handle exception
-                e.printStackTrace();
-            } finally {
-                try {
-                    fileWriter.flush();
-                    fileWriter.close();
-                } catch (IOException e) {
-                    // handle exception
-                    e.printStackTrace();
-                }
-            }
-        }
+//        public void writeCSV(List<Procedure> Procedures, String fileName) {
+//            FileWriter fileWriter = null;
+//            try {
+//                File file = new File(fileName);
+//                fileWriter = new FileWriter(file);
+//                fileWriter.append(header);
+//                fileWriter.append(newline);
+//
+//                // process content line by line
+//                for (Procedure procedure : Procedures) {
+//                    fileWriter.append(String.valueOf(procedure.getDate()));
+//                    fileWriter.append(delimiter);
+//                    fileWriter.append(procedure.getTime());
+//                    fileWriter.append(delimiter);
+//                    fileWriter.append(String.valueOf(procedure.getType()));
+//                    fileWriter.append(delimiter);
+//                    fileWriter.append(String.valueOf(procedure.getDiagnosedSickness()));
+//                    fileWriter.append(newline);
+//                }
+//            } catch (Exception e) {
+//                // handle exception
+//                e.printStackTrace();
+//            } finally {
+//                try {
+//                    fileWriter.flush();
+//                    fileWriter.close();
+//                } catch (IOException e) {
+//                    // handle exception
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
 
 
     public static List<Procedure> readCSV(String fileName){
@@ -125,24 +125,28 @@ public class NewProcedureController {
 
 
 
-    public void create(Procedure procedure) {
-            List<Procedure> d = this.readCSV(Procedure.fileName);
-            d.add(procedure);
-            writeCSV(d, Procedure.fileName);
-
-        }
-
-        @FXML
-        private void ToBeSaved(ActionEvent event){
-            savebuttonprocedure.setOnAction(e-> {
-                ;
-                int id = 0;
-                String date = DiagnosisDateTextField.getText();
-                String name = DiagnosisNameTextField.getText();
-                String diagnosed_sickness = DiagnosisDiagnosedSicknessTextField.getText();
-                Diagnosis diagnosis = new Diagnosis(id, date, name, diagnosed_sickness);
-                CSVHandler csv = new CSVHandler();
-                group57.emrsystem.NewDiagnosisController n = new group57.emrsystem.NewDiagnosisController();
-                n.create(diagnosis);
-            });
+//    public void create(Procedure procedure) {
+//            List<Procedure> d = this.readCSV(Procedure.fileName);
+//            d.add(procedure);
+//            writeCSV(d, Procedure.fileName);
+//
+//        }
+//
+//        @FXML
+//        private void ToBeSaved(ActionEvent event) {
+//            savebuttonprocedure.setOnAction(e -> {
+//                ;
+//                String id = "0";
+//                String date = textdateprocedure.getText();
+//                String name = texttimeprocedure.getText();
+//                String procedure_type = textproceduretypeprocedure.getText();
+//                String medication = textmedicationprocedure.getText();
+//                String amount = textamountprocedure.getText();
+//                String frequency = textfrequencyprocedure.getText();
+//                Procedure procedure = new Procedure(id, date, name, procedure_type, medication, amount, frequency);
+//                CSVHandler csv = new CSVHandler();
+//                group57.emrsystem.NewDiagnosisController n = new group57.emrsystem.NewDiagnosisController();
+//                n.create(diagnosis);
+//            });
+//        }
 }

@@ -43,38 +43,38 @@ public class NewMedicalHistoryController implements Initializable {
     private String header = "id,date,time,ward,treatmentresults,observations,majorcomplication,attendingdoctor,actions";
 
 
-    public void writeCSV(List<MedicalHistory> MedicalHistorys, String fileName) {
-        FileWriter fileWriter = null;
-        try {
-            File file = new File(fileName);
-            fileWriter = new FileWriter(file);
-            fileWriter.append(header);
-            fileWriter.append(newline);
-
-            // process content line by line
-            for (MedicalHistory MedicalHistory : MedicalHistorys) {
-                fileWriter.append(String.valueOf(MedicalHistory.getDate()));
-                fileWriter.append(delimiter);
-                fileWriter.append(MedicalHistory.getName());
-                fileWriter.append(delimiter);
-                fileWriter.append(String.valueOf(MedicalHistory.getName()));
-                fileWriter.append(delimiter);
-                fileWriter.append(String.valueOf(MedicalHistory.getDiagnosedSickness()));
-                fileWriter.append(newline);
-            }
-        } catch (Exception e) {
-            // handle exception
-            e.printStackTrace();
-        } finally {
-            try {
-                fileWriter.flush();
-                fileWriter.close();
-            } catch (IOException e) {
-                // handle exception
-                e.printStackTrace();
-            }
-        }
-    }
+//    public void writeCSV(List<MedicalHistory> MedicalHistorys, String fileName) {
+//        FileWriter fileWriter = null;
+//        try {
+//            File file = new File(fileName);
+//            fileWriter = new FileWriter(file);
+//            fileWriter.append(header);
+//            fileWriter.append(newline);
+//
+//            // process content line by line
+//            for (MedicalHistory MedicalHistory : MedicalHistorys) {
+//                fileWriter.append(String.valueOf(MedicalHistory.getDate()));
+//                fileWriter.append(delimiter);
+//                fileWriter.append(MedicalHistory.getName());
+//                fileWriter.append(delimiter);
+//                fileWriter.append(String.valueOf(MedicalHistory.getName()));
+//                fileWriter.append(delimiter);
+//                fileWriter.append(String.valueOf(MedicalHistory.getDiagnosedSickness()));
+//                fileWriter.append(newline);
+//            }
+//        } catch (Exception e) {
+//            // handle exception
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                fileWriter.flush();
+//                fileWriter.close();
+//            } catch (IOException e) {
+//                // handle exception
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
 
     public List<MedicalHistory> readCSV(String fileName) {
@@ -137,7 +137,7 @@ public class NewMedicalHistoryController implements Initializable {
             String major_complications = MedHisMajorComplicationsTextField.getText();
             String attendingdoctor = MedHisAttendingDoctorTextField.getText();
             String Actions = "something I guess";
-            MedicalHistory medicalhistory = new MedicalHistory(id, date, time, ward, treatment_results, observations, major_complications, attendingdoctor, actions);
+            MedicalHistory medicalhistory = new MedicalHistory(id, date, time, ward, treatment_results, observations, major_complications, attendingdoctor);
             CSVHandler csv = new CSVHandler();
             NewMedicalHistoryController n = new NewMedicalHistoryController();
             //n.create(medicalhistory);

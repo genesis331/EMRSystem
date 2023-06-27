@@ -1,14 +1,18 @@
 package group57.emrsystem;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TableView;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class PatientController implements Initializable {
@@ -63,25 +67,25 @@ public class PatientController implements Initializable {
     private TableView<Patient> patientAdminTable;
 
     @FXML
-    private TableView<Patient, String> patientAdminNationalID;
+    private TableColumn<Patient, String> patientAdminNationalID;
 
     @FXML
-    private TableView<Patient, String> patientAdminName;
+    private TableColumn<Patient, String> patientAdminName;
 
     @FXML
-    private TableView<Patient, String> patientAdminAge;
+    private TableColumn<Patient, String> patientAdminAge;
 
     @FXML
-    private TableView<Patient, String> patientAdminGender;
+    private TableColumn<Patient, String> patientAdminGender;
 
     @FXML
-    private TableView<Patient, String> patientAdminContactNo;
+    private TableColumn<Patient, String> patientAdminContactNo;
 
     @FXML
-    private TableView<Patient, String> patientAdminAddress;
+    private TableColumn<Patient, String> patientAdminAddress;
 
     @FXML
-    private TableView<Patient, String> patientAdminActions;
+    private TableColumn<Patient, String> patientAdminActions;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -104,7 +108,7 @@ public class PatientController implements Initializable {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    Patient patient = new Patient (String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2], tokens[3]);
+                    Patient patient = new Patient (String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);
                     data.add(patient);
                 }
             }
@@ -138,6 +142,6 @@ public class PatientController implements Initializable {
         patientAdminContactNo.setCellValueFactory(new PropertyValueFactory<>("Contact No."));
         patientAdminAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
         patientAdminActions.setCellValueFactory(new PropertyValueFactory<>("Actions"));
-        tableView.setItems(list);
+        patientAdminTable.setItems(list);
     }
 }

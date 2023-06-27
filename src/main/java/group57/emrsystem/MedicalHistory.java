@@ -22,8 +22,32 @@ public class MedicalHistory {
         this.attending_doctor = new SimpleStringProperty(attending_doctor);
     }
 
-    public MedicalHistory getMedicalHistory() {
-        return this;
+    public String getDate() {
+        return date.get();
+    }
+
+    public String getTime() {
+        return time.get();
+    }
+
+    public String getWard() {
+        return ward.get();
+    }
+
+    public String getTreatmentResults() {
+        return treatment_results.get();
+    }
+
+    public String getObservation() {
+        return observation.get();
+    }
+
+    public String getMajorComplications() {
+        return major_complications.get();
+    }
+
+    public String getAttendingDoctor() {
+        return attending_doctor.get();
     }
 
     public void modifyid(String id){

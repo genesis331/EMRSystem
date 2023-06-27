@@ -18,7 +18,7 @@ public class Test {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    Diagnosis diagnosis = new Diagnosis(Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3]);
+                    Diagnosis diagnosis = new Diagnosis(tokens[0], tokens[1], tokens[2], tokens[3]);
                     data.add(diagnosis);
                 }
             }
