@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 
 public class NewTreatmentCourseController implements Initializable {
     private Stage stage;
+    private TreatmentCourseController parentController;
 
     @FXML
     private ChoiceBox PatientIdDropdown;
@@ -32,6 +33,10 @@ public class NewTreatmentCourseController implements Initializable {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    public void setParentController(TreatmentCourseController parentController) {
+        this.parentController = parentController;
     }
 
     private void readCSV() {
@@ -131,6 +136,7 @@ public class NewTreatmentCourseController implements Initializable {
             alert.setContentText("New record has been saved!");
             alert.showAndWait();
             stage.close();
+            parentController.AdminRenderData();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
         }

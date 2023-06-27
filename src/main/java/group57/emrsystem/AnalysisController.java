@@ -245,6 +245,9 @@ public class AnalysisController implements Initializable {
     };
 
     public void AdminRenderData(){
+        if (analysis_admin_table.getColumns().size() > 3) {
+            analysis_admin_table.getColumns().remove(analysis_admin_table.getColumns().size() - 1);
+        }
         TableColumn<Analysis, Void> colBtn = new TableColumn<>("Actions");
         List<Analysis> data = AdminReadCSV(Objects.requireNonNull(AnalysisController.class.getResource("analysis.csv")).getPath());
         ObservableList<Analysis> list = FXCollections.observableArrayList(data);
@@ -265,6 +268,7 @@ public class AnalysisController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         controller.setStage(stage);
+        controller.setParentController(this);
         stage.setScene(scene);
         stage.show();
     }
