@@ -1,1 +1,2 @@
-id,date,time,ward,treatmentresults,observation,majorcomplications,attendingdoctor,action
+id,date,time,ward,treatmentresults,observation,majorcomplications,attendingdoctor
+1,2022-01-01,08:00:00,cured,good,none,Dr. A
