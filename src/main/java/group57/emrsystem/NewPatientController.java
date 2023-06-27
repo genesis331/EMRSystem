@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
@@ -14,6 +15,8 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class NewPatientController implements Initializable {
+    private Stage stage;
+
     @FXML
     private TextField nationalIDField;
 
@@ -35,8 +38,15 @@ public class NewPatientController implements Initializable {
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Button cancelButton;
+
     private List<String> usedIds = new ArrayList<>();
     private List<String> data = new ArrayList<>();
+
+    public NewPatientController(Stage stage) {
+        this.stage = stage;
+    }
 
     private void readCSV() {
         String delimiter = ",";
@@ -103,5 +113,6 @@ public class NewPatientController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         saveButton.setOnAction(actionEvent -> ToBeSaved());
+        cancelButton.setOnAction(actionEvent -> stage.close());
     }
 }

@@ -94,9 +94,10 @@ public class PatientController implements Initializable {
     public TableColumn<Patient, String> patientAddress;
 
     public void ToAddRecord() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("newpatient.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("newpatient.fxml"));
         Stage stage = new Stage();
-        Scene scene = new Scene(root);
+        fxmlLoader.setController(new NewPatientController(stage));
+        Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
         stage.show();
     }
