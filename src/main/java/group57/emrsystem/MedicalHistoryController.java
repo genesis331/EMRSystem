@@ -28,33 +28,33 @@ public class MedicalHistoryController implements Initializable {
     private Stage stage;
     private Boolean isAdmin = false;
     @FXML
-    private TextField MedHisDateTextField;
-    private TextField MedHisTimeTextField;
-    private TextField MedHisWardTextField;
-    private TextField MedHisTreatmentResultsTextField;
-    private TextField MedHisObervationTextField;
-    private TextField MedHisMajorComplicationsTextField;
-    private TextField MedHisAttendingDoctorTextField;
-    private Button MedHisSaveButton;
-    private TableView MedHisUserTableView;
-    private TableView MedHisAdminTableView;
-    private Button MedHisAdminAddRecordButton;
-    private TableColumn MedHisUserDateColumn;
-    private TableColumn MedHisUserTimeColumn;
-    private TableColumn MedHisUserWardColumn;
-    private TableColumn MedHisUserTreatmentResultsColumn;
-    private TableColumn MedHisUserObservationsColumn;
-    private TableColumn MedHisUserMajorComplicationsColumn;
-    private TableColumn MedHisUserAttendingDoctorColumn;
-    private TableColumn MedHisUserActionsColumn;
-    private TableColumn MedHisAdminDateColumn;
-    private TableColumn MedHisAdminTimeColumn;
-    private TableColumn MedHisAdminWardColumn;
-    private TableColumn MedHisAdminTreatmentResultsColumn;
-    private TableColumn MedHisAdminObservationsColumn;
-    private TableColumn MedHisAdminMajorComplicationsColumn;
-    private TableColumn MedHisAdminAttendingDoctorColumn;
-    private TableColumn MedHisAdminActionsColumn;
+    public TextField MedHisDateTextField;
+    public TextField MedHisTimeTextField;
+    public TextField MedHisWardTextField;
+    public TextField MedHisTreatmentResultsTextField;
+    public TextField MedHisObervationTextField;
+    public TextField MedHisMajorComplicationsTextField;
+    public TextField MedHisAttendingDoctorTextField;
+    public Button MedHisSaveButton;
+    public TableView MedHisUserTableView;
+    public TableView MedHisAdminTableView;
+    public Button MedHisAdminAddRecordButton;
+    public TableColumn MedHisUserDateColumn;
+    public TableColumn MedHisUserTimeColumn;
+    public TableColumn MedHisUserWardColumn;
+    public TableColumn MedHisUserTreatmentResultsColumn;
+    public TableColumn MedHisUserObservationsColumn;
+    public TableColumn MedHisUserMajorComplicationsColumn;
+    public TableColumn MedHisUserAttendingDoctorColumn;
+    public TableColumn MedHisUserActionsColumn;
+    public TableColumn MedHisAdminDateColumn;
+    public TableColumn MedHisAdminTimeColumn;
+    public TableColumn MedHisAdminWardColumn;
+    public TableColumn MedHisAdminTreatmentResultsColumn;
+    public TableColumn MedHisAdminObservationColumn;
+    public TableColumn MedHisAdminMajorComplicationsColumn;
+    public TableColumn MedHisAdminAttendingDoctorColumn;
+    public TableColumn MedHisAdminActionsColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -149,28 +149,26 @@ public class MedicalHistoryController implements Initializable {
     public void UserRenderData() {
         List<MedicalHistory> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("medicalhistory.csv")).getPath());
         ObservableList<MedicalHistory> list = FXCollections.observableArrayList(data);
-        MedHisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        MedHisUserTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        MedHisUserWardColumn.setCellValueFactory(new PropertyValueFactory<>("ward"));
-        MedHisUserTreatmentResultsColumn.setCellValueFactory(new PropertyValueFactory<>("treatmentresults"));
-        MedHisUserObservationsColumn.setCellValueFactory(new PropertyValueFactory<>("observations"));
-        MedHisUserMajorComplicationsColumn.setCellValueFactory(new PropertyValueFactory<>("majorcpmplications"));
-        MedHisUserAttendingDoctorColumn.setCellValueFactory(new PropertyValueFactory<>("attendingdoctor"));
-        MedHisUserActionsColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
-        MedHisUserTableView.setItems(list);
+        MedHisAdminDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        MedHisAdminTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
+        MedHisAdminWardColumn.setCellValueFactory(new PropertyValueFactory<>("Ward"));
+        MedHisAdminTreatmentResultsColumn.setCellValueFactory(new PropertyValueFactory<>("TreatmentResults"));
+        MedHisAdminObservationColumn.setCellValueFactory(new PropertyValueFactory<>("Observation"));
+        MedHisAdminMajorComplicationsColumn.setCellValueFactory(new PropertyValueFactory<>("MajorComplications"));
+        MedHisAdminAttendingDoctorColumn.setCellValueFactory(new PropertyValueFactory<>("AttendingDoctor"));
+        MedHisAdminTableView.setItems(list);
     }
 
     public void AdminRenderData() {
         List<MedicalHistory> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("medicalhistory.csv")).getPath());
         ObservableList<MedicalHistory> list = FXCollections.observableArrayList(data);
-        MedHisAdminDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        MedHisAdminTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        MedHisAdminWardColumn.setCellValueFactory(new PropertyValueFactory<>("ward"));
-        MedHisAdminTreatmentResultsColumn.setCellValueFactory(new PropertyValueFactory<>("treatmentresults"));
-        MedHisAdminObservationsColumn.setCellValueFactory(new PropertyValueFactory<>("observations"));
-        MedHisAdminMajorComplicationsColumn.setCellValueFactory(new PropertyValueFactory<>("majorcpmplications"));
-        MedHisAdminAttendingDoctorColumn.setCellValueFactory(new PropertyValueFactory<>("attendingdoctor"));
-        MedHisAdminActionsColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        MedHisAdminDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        MedHisAdminTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Time"));
+        MedHisAdminWardColumn.setCellValueFactory(new PropertyValueFactory<>("Ward"));
+        MedHisAdminTreatmentResultsColumn.setCellValueFactory(new PropertyValueFactory<>("TreatmentResults"));
+        MedHisAdminObservationColumn.setCellValueFactory(new PropertyValueFactory<>("Observation"));
+        MedHisAdminMajorComplicationsColumn.setCellValueFactory(new PropertyValueFactory<>("MajorComplications"));
+        MedHisAdminAttendingDoctorColumn.setCellValueFactory(new PropertyValueFactory<>("AttendingDoctor"));
         MedHisAdminTableView.setItems(list);
     }
 

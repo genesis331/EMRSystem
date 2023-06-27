@@ -14,6 +14,7 @@ public class MedicalHistory {
 
     public MedicalHistory(String id, String date, String time, String ward, String treatment_results, String observation, String major_complications, String attending_doctor) {
         this.id = id;
+        this.date = new SimpleStringProperty(date);
         this.time = new SimpleStringProperty(time);
         this.ward = new SimpleStringProperty(ward);
         this.treatment_results = new SimpleStringProperty(treatment_results);
