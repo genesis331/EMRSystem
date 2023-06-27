@@ -47,7 +47,14 @@ public class MedicalHistoryController implements Initializable {
     private TableColumn MedHisUserMajorComplicationsColumn;
     private TableColumn MedHisUserAttendingDoctorColumn;
     private TableColumn MedHisUserActionsColumn;
-
+    private TableColumn MedHisAdminDateColumn;
+    private TableColumn MedHisAdminTimeColumn;
+    private TableColumn MedHisAdminWardColumn;
+    private TableColumn MedHisAdminTreatmentResultsColumn;
+    private TableColumn MedHisAdminObservationsColumn;
+    private TableColumn MedHisAdminMajorComplicationsColumn;
+    private TableColumn MedHisAdminAttendingDoctorColumn;
+    private TableColumn MedHisAdminActionsColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -156,15 +163,15 @@ public class MedicalHistoryController implements Initializable {
     public void AdminRenderData() {
         List<MedicalHistory> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("medicalhistory.csv")).getPath());
         ObservableList<MedicalHistory> list = FXCollections.observableArrayList(data);
-        MedHisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        MedHisUserTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        MedHisUserWardColumn.setCellValueFactory(new PropertyValueFactory<>("ward"));
-        MedHisUserTreatmentResultsColumn.setCellValueFactory(new PropertyValueFactory<>("treatmentresults"));
-        MedHisUserObservationsColumn.setCellValueFactory(new PropertyValueFactory<>("observations"));
-        MedHisUserMajorComplicationsColumn.setCellValueFactory(new PropertyValueFactory<>("majorcpmplications"));
-        MedHisUserAttendingDoctorColumn.setCellValueFactory(new PropertyValueFactory<>("attendingdoctor"));
-        MedHisUserActionsColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
-        MedHisUserTableView.setItems(list);
+        MedHisAdminDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        MedHisAdminTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        MedHisAdminWardColumn.setCellValueFactory(new PropertyValueFactory<>("ward"));
+        MedHisAdminTreatmentResultsColumn.setCellValueFactory(new PropertyValueFactory<>("treatmentresults"));
+        MedHisAdminObservationsColumn.setCellValueFactory(new PropertyValueFactory<>("observations"));
+        MedHisAdminMajorComplicationsColumn.setCellValueFactory(new PropertyValueFactory<>("majorcpmplications"));
+        MedHisAdminAttendingDoctorColumn.setCellValueFactory(new PropertyValueFactory<>("attendingdoctor"));
+        MedHisAdminActionsColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        MedHisAdminTableView.setItems(list);
     }
 
     public void ToAddRecord() throws IOException {

@@ -41,9 +41,9 @@
         </GridPane>
         <TableView fx:id="DiagnosisAdminTableView">
             <columns>
-                <TableColumn fx:id="DiagnosisUserDateColumn" prefWidth="75.0" text="Date" />
-                <TableColumn fx:id="DiagnosisUserNameColumn" prefWidth="75.0" text="Name" />
-                <TableColumn fx:id="DiagnosisUserDiagnosedSicknessColumn" prefWidth="75.0" text="Diagnosed Sickness" />
+                <TableColumn fx:id="DiagnosisAdminDateColumn" prefWidth="75.0" text="Date" />
+                <TableColumn fx:id="DiagnosisAdminNameColumn" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="DiagnosisAdminDiagnosedSicknessColumn" prefWidth="75.0" text="Diagnosed Sickness" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

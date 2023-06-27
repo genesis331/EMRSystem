@@ -45,6 +45,12 @@ public class DiagnosisController implements Initializable{
     @FXML
     public TableColumn<Diagnosis, String> DiagnosisUserDiagnosedSicknessColumn;
     @FXML
+    public TableColumn<Diagnosis, String> DiagnosisAdminDateColumn;
+    @FXML
+    public TableColumn<Diagnosis, String> DiagnosisAdminNameColumn;
+    @FXML
+    public TableColumn<Diagnosis, String> DiagnosisAdminDiagnosedSicknessColumn;
+    @FXML
     public Button DiagnosisSaveButton;
 
     @FXML
@@ -121,7 +127,7 @@ public class DiagnosisController implements Initializable{
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    Diagnosis diagnosis = new Diagnosis(Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3]);
+                    Diagnosis diagnosis = new Diagnosis(tokens[0], tokens[1], tokens[2], tokens[3]);
                     data.add(diagnosis);
                 }
             }
@@ -185,9 +191,9 @@ public class DiagnosisController implements Initializable{
         TableColumn<Diagnosis, Void> colBtn = new TableColumn("Actions");
         List<Diagnosis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
-        DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("diagnosedsickness"));
+        DiagnosisAdminDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        DiagnosisAdminNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        DiagnosisAdminDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("diagnosedsickness"));
         colBtn.setCellFactory(cellFactory);
         DiagnosisAdminTableView.getColumns().add(colBtn);
         DiagnosisAdminTableView.setItems(list);
