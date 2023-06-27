@@ -5,17 +5,16 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+import javafx.util.Callback;
 
 import java.io.*;
 import java.net.URL;
@@ -160,7 +159,35 @@ public class MedicalHistoryController implements Initializable {
         MedHisUserTableView.setItems(list);
     }
 
+    Callback<TableColumn<MedicalHistory, Void>, TableCell<MedicalHistory, Void>> cellFactory = new Callback<TableColumn<MedicalHistory, Void>, TableCell<MedicalHistory, Void>>() {
+        @Override
+        public TableCell<MedicalHistory, Void> call(final TableColumn<MedicalHistory, Void> param) {
+            return new TableCell<MedicalHistory, Void>() {
+
+                private final Button btn = new Button("Delete");
+
+                {
+                    btn.setOnAction((ActionEvent event) -> {
+                        MedicalHistory data = getTableView().getItems().get(getIndex());
+                        System.out.println("selectedData: " + data);
+                    });
+                }
+
+                @Override
+                public void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(btn);
+                    }
+                }
+            };
+        }
+    };
+
     public void AdminRenderData() {
+        TableColumn<MedicalHistory, Void> colBtn = new TableColumn("Actions");
         List<MedicalHistory> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("medicalhistory.csv")).getPath());
         ObservableList<MedicalHistory> list = FXCollections.observableArrayList(data);
         MedHisAdminDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
@@ -170,6 +197,8 @@ public class MedicalHistoryController implements Initializable {
         MedHisAdminObservationColumn.setCellValueFactory(new PropertyValueFactory<>("Observation"));
         MedHisAdminMajorComplicationsColumn.setCellValueFactory(new PropertyValueFactory<>("MajorComplications"));
         MedHisAdminAttendingDoctorColumn.setCellValueFactory(new PropertyValueFactory<>("AttendingDoctor"));
+        colBtn.setCellFactory(cellFactory);
+        MedHisAdminTableView.getColumns().add(colBtn);
         MedHisAdminTableView.setItems(list);
     }
 

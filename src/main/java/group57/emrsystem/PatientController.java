@@ -203,7 +203,7 @@ public class PatientController implements Initializable {
         this.username = username;
     }
 
-    public static List<Patient> readCSV(String fileName) {
+    public List<Patient> readCSV(String fileName) {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);

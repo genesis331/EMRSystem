@@ -150,7 +150,6 @@ public class AnalysisController implements Initializable {
         analysis_user_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
         analysis_user_type_of_test.setCellValueFactory(new PropertyValueFactory<>("TypeOfTest"));
         analysis_user_result.setCellValueFactory(new PropertyValueFactory<>("Result"));
-//        analysis_user_action.setCellValueFactory(new PropertyValueFactory<>("Actions"));
         analysis_user_table.setItems(list);
     }
 
