@@ -33,7 +33,6 @@
                 <TableColumn fx:id="analysis_user_date" prefWidth="75.0" text="Date" />
                 <TableColumn fx:id="analysis_user_type_of_test" prefWidth="75.0" text="Type of Test" />
                 <TableColumn fx:id="analysis_user_result" prefWidth="75.0" text="Result" />
-            <TableColumn fx:id="analysis_user_action" prefWidth="75.0" text="Actions" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

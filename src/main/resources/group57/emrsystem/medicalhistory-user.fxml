@@ -34,10 +34,9 @@
                 <TableColumn fx:id="MedHisUserTimeColumn" prefWidth="75.0" text="Time" />
                 <TableColumn fx:id="MedHisUserWardColumn" prefWidth="75.0" text="Ward" />
                 <TableColumn fx:id="MedHisUserTreatmentResultsColumn" prefWidth="75.0" text="Treatment Results" />
-                <TableColumn fx:id="MedHisUserObservationsColumn" prefWidth="75.0" text="Observation" />
+                <TableColumn fx:id="MedHisUserObservationColumn" prefWidth="75.0" text="Observation" />
                 <TableColumn fx:id="MedHisUserMajorComplicationsColumn" prefWidth="75.0" text="Major Complications" />
                 <TableColumn fx:id="MedHisUserAttendingDoctorColumn" prefWidth="75.0" text="Attending Doctor/Nurse" />
-                <TableColumn fx:id="MedHisUserActionsColumn" prefWidth="75.0" text="Actions" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 public class TreatmentCourseController  implements Initializable {
     private Stage stage;
     private Boolean isAdmin = false;
+    private String username;
     @FXML
     private TextField treatment_textfield;
     @FXML
@@ -44,7 +45,13 @@ public class TreatmentCourseController  implements Initializable {
     @FXML
     public TableColumn<TreatmentCourse, String> treatment_user_end_date;
     @FXML
-    public TableColumn<TreatmentCourse, String> treatment_user_actions;
+    public TableColumn<TreatmentCourse, String> treatment_admin_treatment;
+    @FXML
+    public TableColumn<TreatmentCourse, String> treatment_admin_start_date;
+    @FXML
+    public TableColumn<TreatmentCourse, String> treatment_admin_end_date;
+    @FXML
+    public TableColumn<TreatmentCourse, String> treatment_actions;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,15 +67,15 @@ public class TreatmentCourseController  implements Initializable {
         } else {
             UserRenderData();
         }
-//        save_button.setOnAction(e->ToBeSaved());
     }
 
-    public TreatmentCourseController(Stage stage, boolean isAdmin) {
+    public TreatmentCourseController(Stage stage, boolean isAdmin, String username) {
         this.stage = stage;
         this.isAdmin = isAdmin;
+        this.username = username;
     }
 
-    public static List<TreatmentCourse> UserReadCSV(String fileName){
+    public List<TreatmentCourse> UserReadCSV(String fileName){
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
@@ -80,8 +87,10 @@ public class TreatmentCourseController  implements Initializable {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    TreatmentCourse treatmentCourse = new TreatmentCourse (String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2], tokens[3]);
-                    data.add(treatmentCourse);
+                    if (tokens[0].equals(username)) {
+                        TreatmentCourse treatmentCourse = new TreatmentCourse(String.valueOf(Integer.parseInt(tokens[1])), tokens[2], tokens[3], tokens[4]);
+                        data.add(treatmentCourse);
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
@@ -104,7 +113,7 @@ public class TreatmentCourseController  implements Initializable {
         return data;
     }
 
-    public static List<TreatmentCourse> AdminReadCSV(String fileName) {
+    public List<TreatmentCourse> AdminReadCSV(String fileName) {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
@@ -116,7 +125,7 @@ public class TreatmentCourseController  implements Initializable {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    TreatmentCourse treatmentCourse = new TreatmentCourse(String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2], tokens[3]);
+                    TreatmentCourse treatmentCourse = new TreatmentCourse(String.valueOf(Integer.parseInt(tokens[1])), tokens[2], tokens[3], tokens[4]);
                     data.add(treatmentCourse);
                 }
             }
@@ -180,9 +189,9 @@ public class TreatmentCourseController  implements Initializable {
         TableColumn<TreatmentCourse, Void> colBtn = new TableColumn("Actions");
         List<TreatmentCourse> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("treatmentcourse.csv")).getPath());
         ObservableList<TreatmentCourse> list = FXCollections.observableArrayList(data);
-        treatment_user_treatment.setCellValueFactory(new PropertyValueFactory<>("Treatment"));
-        treatment_user_start_date.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
-        treatment_user_end_date.setCellValueFactory(new PropertyValueFactory<>("EndDate"));
+        treatment_admin_treatment.setCellValueFactory(new PropertyValueFactory<>("Treatment"));
+        treatment_admin_start_date.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
+        treatment_admin_end_date.setCellValueFactory(new PropertyValueFactory<>("EndDate"));
         colBtn.setCellFactory(cellFactory);
         treatment_admin_table.getColumns().add(colBtn);
         treatment_admin_table.setItems(list);

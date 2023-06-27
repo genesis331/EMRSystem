@@ -9,6 +9,9 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +20,10 @@ import javafx.stage.Stage;
 
 public class PatientController implements Initializable {
     private Stage stage;
+
+    private Boolean isAdmin = false;
+
+    private String username;
 
     @FXML
     private TextField nationalIDField;
@@ -55,7 +62,7 @@ public class PatientController implements Initializable {
     private Button saveButton;
 
     @FXML
-    private Button addRecordButton;
+    public Button addRecordButton;
 
     @FXML
     private Button logoutButtonUser;
@@ -64,36 +71,136 @@ public class PatientController implements Initializable {
     private Button logoutButtonAdmin;
 
     @FXML
-    public TableView<Patient> patientAdminTable;
+    public TableView<Patient> patientTable;
 
     @FXML
-    public TableColumn<Patient, String> patientAdminNationalID;
+    public TableColumn<Patient, String> patientNationalID;
 
     @FXML
-    public TableColumn<Patient, String> patientAdminName;
+    public TableColumn<Patient, String> patientName;
 
     @FXML
-    private TableColumn<Patient, String> patientAdminAge;
+    private TableColumn<Patient, String> patientAge;
 
     @FXML
-    public TableColumn<Patient, String> patientAdminGender;
+    public TableColumn<Patient, String> patientGender;
 
     @FXML
-    public TableColumn<Patient, String> patientAdminContactNo;
+    public TableColumn<Patient, String> patientContactNo;
 
     @FXML
-    public TableColumn<Patient, String> patientAdminAddress;
+    public TableColumn<Patient, String> patientAddress;
 
     @FXML
-    public TableColumn<Patient, String> patientAdminActions;
+    public TableColumn<Patient, String> patientActions;
+
+    public void ToAddRecord() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("newpatient.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void ToViewMedicalHistory() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("medicalhistory-user.fxml"));
+        fxmlLoader.setController(new MedicalHistoryController(stage, false, username));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void ToViewTreatmentCourse() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("treatmentcourse-user.fxml"));
+        fxmlLoader.setController(new TreatmentCourseController(stage, false, username));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void ToViewAnalysisForm() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("analysis-user.fxml"));
+        fxmlLoader.setController(new AnalysisController(stage, false, username));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void ToViewDiagnosisForm() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("diagnosis-user.fxml"));
+        fxmlLoader.setController(new DiagnosisController(stage, false, username));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void ToViewProcedureandMedicineForm() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("procedureandmedicine-user.fxml"));
+        fxmlLoader.setController(new ProcedureAndMedicineController(stage, false, username));
+        Stage stage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (isAdmin) {
+            addRecordButton.setOnAction(e -> {
+                try {
+                    ToAddRecord();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+        } else {
+            viewMedicalHistoryButton.setOnAction(e -> {
+                try {
+                    ToViewMedicalHistory();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            viewTreatmentCourseButton.setOnAction(e -> {
+                try {
+                    ToViewTreatmentCourse();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            viewAnalysisFormButton.setOnAction(e -> {
+                try {
+                    ToViewAnalysisForm();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            viewDiagnosisFormButton.setOnAction(e -> {
+                try {
+                    ToViewDiagnosisForm();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            viewProcedureandMedicineFormButton.setOnAction(e -> {
+                try {
+                    ToViewProcedureandMedicineForm();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+        }
         renderData();
     }
 
-    public PatientController(Stage stage) {
+    public PatientController(Stage stage, Boolean isAdmin, String username) {
         this.stage = stage;
+        this.isAdmin = isAdmin;
+        this.username = username;
     }
 
     public static List<Patient> readCSV(String fileName) {
@@ -135,13 +242,25 @@ public class PatientController implements Initializable {
     public void renderData() {
         List<Patient> data = readCSV(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
         ObservableList<Patient> list = FXCollections.observableArrayList(data);
-        patientAdminNationalID.setCellValueFactory(new PropertyValueFactory<>("NationalID"));
-        patientAdminName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        patientAdminAge.setCellValueFactory(new PropertyValueFactory<>("Age"));
-        patientAdminGender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
-        patientAdminContactNo.setCellValueFactory(new PropertyValueFactory<>("ContactNo"));
-        patientAdminAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
-//        patientAdminActions.setCellValueFactory(new PropertyValueFactory<>("Actions"));
-        patientAdminTable.setItems(list);
+        if (isAdmin) {
+            patientNationalID.setCellValueFactory(new PropertyValueFactory<>("NationalID"));
+            patientName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+            patientAge.setCellValueFactory(new PropertyValueFactory<>("Age"));
+            patientGender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
+            patientContactNo.setCellValueFactory(new PropertyValueFactory<>("ContactNo"));
+            patientAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
+            patientTable.setItems(list);
+        } else {
+            for (Patient patient : data) {
+                if (patient.getNationalID().equals(username)) {
+                    nationalIDField.setText(patient.getNationalID());
+                    nameField.setText(patient.getName());
+                    ageField.setText(patient.getAge());
+                    genderField.setText(patient.getGender());
+                    contactNumberField.setText(patient.getContactNo());
+                    addressArea.setText(patient.getAddress());
+                }
+            }
+        }
     }
 }

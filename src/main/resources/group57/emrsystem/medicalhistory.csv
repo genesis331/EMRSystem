@@ -1,2 +1,2 @@
-id,date,time,ward,treatmentresults,observation,majorcomplications,attendingdoctor
-1,2022-01-01,08:00:00,R123,cured,good,none,Dr. A
+username,id,date,time,ward,treatmentresults,observation,majorcomplications,attendingdoctor
+A12345,1,2022-01-01,08:00:00,R123,cured,good,none,Dr. A

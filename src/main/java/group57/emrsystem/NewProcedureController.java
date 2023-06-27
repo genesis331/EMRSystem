@@ -1,8 +1,6 @@
 package group57.emrsystem;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,23 +28,23 @@ public class NewProcedureController {
         @FXML
         public TextField textfrequencyprocedure;
         @FXML
-        public TableView<Procedure> tableadmin;
+        public TableView<ProcedureAndMedicine> tableadmin;
         @FXML
-        public TableView<Procedure> tableuser;
+        public TableView<ProcedureAndMedicine> tableuser;
         @FXML
-        public TableColumn<Procedure, String> table_date_procedure;
+        public TableColumn<ProcedureAndMedicine, String> table_date_procedure;
         @FXML
-        public TableColumn<Procedure, String> table_time_procedure;
+        public TableColumn<ProcedureAndMedicine, String> table_time_procedure;
         @FXML
-        public TableColumn<Procedure, String> table_type_procedure;
+        public TableColumn<ProcedureAndMedicine, String> table_type_procedure;
         @FXML
-        public TableColumn<Procedure, String> table_medication_procedure;
+        public TableColumn<ProcedureAndMedicine, String> table_medication_procedure;
         @FXML
-        public TableColumn<Procedure, String> table_amount_procedure;
+        public TableColumn<ProcedureAndMedicine, String> table_amount_procedure;
         @FXML
-        public TableColumn<Procedure, String> table_frequency_procedure;
+        public TableColumn<ProcedureAndMedicine, String> table_frequency_procedure;
         @FXML
-        public TableColumn<Procedure, String> admin_table_action_procedure;
+        public TableColumn<ProcedureAndMedicine, String> admin_table_action_procedure;
         @FXML
         public Button savebuttonprocedure;
         private String newline = "\n";
@@ -87,11 +85,11 @@ public class NewProcedureController {
 //        }
 
 
-    public static List<Procedure> readCSV(String fileName){
+    public static List<ProcedureAndMedicine> readCSV(String fileName){
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<Procedure> data = new ArrayList<Procedure>();
+        List<ProcedureAndMedicine> data = new ArrayList<ProcedureAndMedicine>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -99,7 +97,7 @@ public class NewProcedureController {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    Procedure procedure = new Procedure (String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);
+                    ProcedureAndMedicine procedure = new ProcedureAndMedicine(String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6]);
                     data.add(procedure);
                 }
             }

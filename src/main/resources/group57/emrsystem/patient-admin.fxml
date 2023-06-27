@@ -47,15 +47,14 @@
             <Insets bottom="25.0" left="50.0" right="50.0" top="40.0" />
          </padding>
       </GridPane>
-      <TableView fx:id="patientAdminTable">
+      <TableView fx:id="patientTable">
         <columns>
-          <TableColumn fx:id="patientAdminNationalID" prefWidth="75.0" text="National ID" />
-          <TableColumn fx:id="patientAdminName" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="patientAdminAge" prefWidth="75.0" text="Age" />
-            <TableColumn fx:id="patientAdminGender" prefWidth="75.0" text="Gender" />
-            <TableColumn fx:id="patientAdminContactNo" prefWidth="75.0" text="Contact Number" />
-            <TableColumn fx:id="patientAdminAddress" prefWidth="75.0" text="Address" />
-            <TableColumn fx:id="patientAdminActions" prefWidth="75.0" text="Actions" />
+          <TableColumn fx:id="patientNationalID" prefWidth="75.0" text="National ID" />
+          <TableColumn fx:id="patientName" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="patientAge" prefWidth="75.0" text="Age" />
+            <TableColumn fx:id="patientGender" prefWidth="75.0" text="Gender" />
+            <TableColumn fx:id="patientContactNo" prefWidth="75.0" text="Contact Number" />
+            <TableColumn fx:id="patientAddress" prefWidth="75.0" text="Address" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

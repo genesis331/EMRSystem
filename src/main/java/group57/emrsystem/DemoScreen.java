@@ -10,8 +10,8 @@ import java.io.IOException;
 public class DemoScreen extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DemoController.class.getResource("demo.fxml"));
-        fxmlLoader.setController(new DemoController(stage));
+        FXMLLoader fxmlLoader = new FXMLLoader(DemoController.class.getResource("patient-user.fxml"));
+        fxmlLoader.setController(new PatientController(stage, false, "A12345"));
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setTitle("Test Form");
         stage.setScene(scene);

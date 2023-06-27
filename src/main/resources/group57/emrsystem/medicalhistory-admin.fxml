@@ -48,7 +48,6 @@
                 <TableColumn fx:id="MedHisAdminObservationColumn" prefWidth="75.0" text="Observation" />
                 <TableColumn fx:id="MedHisAdminMajorComplicationsColumn" prefWidth="75.0" text="Major Complications" />
                 <TableColumn fx:id="MedHisAdminAttendingDoctorColumn" prefWidth="75.0" text="Attending Doctor/Nurse" />
-                <TableColumn fx:id="MedHisAdminActionsColumn" prefWidth="75.0" text="Actions" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

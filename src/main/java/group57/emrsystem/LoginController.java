@@ -1,25 +1,53 @@
 package group57.emrsystem;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginController {
+public class LoginController implements Initializable {
     private Stage stage;
     @FXML
-    private TextField usernameField;
+    public TextField usernameField;
     @FXML
-    private TextField passwordField;
+    public TextField passwordField;
     @FXML
-    private Button loginButton;
+    public Button loginButton;
 
     public LoginController(Stage stage)
     {
         this.stage = stage;
+    }
+
+    private void login() throws IOException {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        if (username.equals("admin") && password.equals("admin")) {
+            stage.close();
+            PatientScreen patientScreen = new PatientScreen();
+            patientScreen.hackedStart(new Stage(), true, username);
+        } else {
+            stage.close();
+            PatientScreen patientScreen = new PatientScreen();
+            patientScreen.hackedStart(new Stage(), false, username);
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loginButton.setOnAction(actionEvent -> {
+            try {
+                login();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

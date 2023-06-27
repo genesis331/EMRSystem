@@ -1,2 +1,2 @@
-id,date,type_of_test,result
-1,2015-01-01,test1,positive
+username,id,date,type_of_test,result
+A12345,1,2015-01-01,test1,positive

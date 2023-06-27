@@ -25,7 +25,7 @@
                 </Label>
                 <HBox spacing="15.0" GridPane.columnIndex="2">
                     <children>
-                        <Button id="addbuttonadmin" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #1890FF;" text="Add Record" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="addbuttonadmin" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #1890FF;" text="Add Record" textAlignment="CENTER" textFill="WHITE">
                             <padding>
                                 <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
                             </padding>
@@ -40,15 +40,14 @@
                 <Insets bottom="25.0" left="50.0" right="50.0" top="40.0" />
             </padding>
         </GridPane>
-        <TableView id="tableadmin">
+        <TableView fx:id="tableadmin">
             <columns>
-                <TableColumn prefWidth="75.0" text="Date" />
-                <TableColumn prefWidth="75.0" text="Time" />
-                <TableColumn prefWidth="75.0" text="Procedure Type" />
-            <TableColumn prefWidth="75.0" text="Medication" />
-            <TableColumn prefWidth="75.0" text="Amount" />
-            <TableColumn prefWidth="75.0" text="Frequency" />
-            <TableColumn prefWidth="75.0" text="Actions" />
+                <TableColumn fx:id="table_date_procedure" prefWidth="75.0" text="Date" />
+                <TableColumn fx:id="table_time_procedure" prefWidth="75.0" text="Time" />
+                <TableColumn fx:id="table_type_procedure" prefWidth="75.0" text="Procedure Type" />
+            <TableColumn fx:id="table_medication_procedure" prefWidth="75.0" text="Medication" />
+            <TableColumn fx:id="table_amount_procedure" prefWidth="75.0" text="Amount" />
+            <TableColumn fx:id="table_frequency_procedure" prefWidth="75.0" text="Frequency" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

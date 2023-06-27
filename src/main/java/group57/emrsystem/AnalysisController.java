@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 public class AnalysisController implements Initializable {
     private Stage stage;
     private Boolean isAdmin = false;
+    private String username;
     @FXML
     private TextField date_textfield;
     @FXML
@@ -61,15 +62,15 @@ public class AnalysisController implements Initializable {
         } else {
             UserRenderData();
         }
-//        save_button.setOnAction(e->ToBeSaved());
     }
 
-    public AnalysisController(Stage stage, boolean isAdmin) {
+    public AnalysisController(Stage stage, boolean isAdmin, String username) {
         this.stage = stage;
         this.isAdmin = isAdmin;
+        this.username = username;
     }
 
-    public static List<Analysis> UserReadCSV(String fileName){
+    public List<Analysis> UserReadCSV(String fileName){
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
@@ -81,8 +82,10 @@ public class AnalysisController implements Initializable {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    Analysis analysis = new Analysis (String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2], tokens[3]);
-                    data.add(analysis);
+                    if (tokens[0].equals(username)) {
+                        Analysis analysis = new Analysis(String.valueOf(Integer.parseInt(tokens[1])), tokens[2], tokens[3], tokens[4]);
+                        data.add(analysis);
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
@@ -105,7 +108,7 @@ public class AnalysisController implements Initializable {
         return data;
     }
 
-    public static List<Analysis> AdminReadCSV(String fileName){
+    public List<Analysis> AdminReadCSV(String fileName){
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
@@ -117,7 +120,7 @@ public class AnalysisController implements Initializable {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    Analysis analysis = new Analysis (String.valueOf(Integer.parseInt(tokens[0])), tokens[1], tokens[2], tokens[3]);
+                    Analysis analysis = new Analysis(String.valueOf(Integer.parseInt(tokens[1])), tokens[2], tokens[3], tokens[4]);
                     data.add(analysis);
                 }
             }
