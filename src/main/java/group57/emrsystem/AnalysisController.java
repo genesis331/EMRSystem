@@ -2,17 +2,16 @@ package group57.emrsystem;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.*;
 import java.net.URL;
@@ -152,13 +151,42 @@ public class AnalysisController implements Initializable {
         analysis_user_table.setItems(list);
     }
 
+    Callback<TableColumn<Analysis, Void>, TableCell<Analysis, Void>> cellFactory = new Callback<TableColumn<Analysis, Void>, TableCell<Analysis, Void>>() {
+        @Override
+        public TableCell<Analysis, Void> call(final TableColumn<Analysis, Void> param) {
+            return new TableCell<Analysis, Void>() {
+
+                private final Button btn = new Button("Delete");
+
+                {
+                    btn.setOnAction((ActionEvent event) -> {
+                        Analysis data = getTableView().getItems().get(getIndex());
+                        System.out.println("selectedData: " + data);
+                    });
+                }
+
+                @Override
+                public void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(btn);
+                    }
+                }
+            };
+        }
+    };
+
     public void AdminRenderData(){
+        TableColumn<Analysis, Void> colBtn = new TableColumn("Actions");
         List<Analysis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("analysis.csv")).getPath());
         ObservableList<Analysis> list = FXCollections.observableArrayList(data);
         analysis_user_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
         analysis_user_type_of_test.setCellValueFactory(new PropertyValueFactory<>("TypeOfTest"));
         analysis_user_result.setCellValueFactory(new PropertyValueFactory<>("Result"));
-//        analysis_user_action.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        colBtn.setCellFactory(cellFactory);
+        analysis_admin_table.getColumns().add(colBtn);
         analysis_admin_table.setItems(list);
     }
 

@@ -55,7 +55,6 @@
                 <TableColumn fx:id="AdminObservationColumn" prefWidth="75.0" text="Observation" />
                 <TableColumn fx:id="AdminMajorComplicationsColumn" prefWidth="75.0" text="Major Complications" />
                 <TableColumn fx:id="AdminAttendingDoctorColumn" prefWidth="75.0" text="Attending Doctor/Nurse" />
-                <TableColumn fx:id="AdminActionsColumn" prefWidth="75.0" text="Actions" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
