@@ -74,7 +74,7 @@ public class AnalysisController implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<Analysis> data = new ArrayList<Analysis>();
+        List<Analysis> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -112,7 +112,7 @@ public class AnalysisController implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<Analysis> data = new ArrayList<Analysis>();
+        List<Analysis> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -153,10 +153,10 @@ public class AnalysisController implements Initializable {
         analysis_user_table.setItems(list);
     }
 
-    Callback<TableColumn<Analysis, Void>, TableCell<Analysis, Void>> cellFactory = new Callback<TableColumn<Analysis, Void>, TableCell<Analysis, Void>>() {
+    Callback<TableColumn<Analysis, Void>, TableCell<Analysis, Void>> cellFactory = new Callback<>() {
         @Override
         public TableCell<Analysis, Void> call(final TableColumn<Analysis, Void> param) {
-            return new TableCell<Analysis, Void>() {
+            return new TableCell<>() {
 
                 private final Button btn = new Button("Delete");
 
@@ -181,7 +181,7 @@ public class AnalysisController implements Initializable {
     };
 
     public void AdminRenderData(){
-        TableColumn<Analysis, Void> colBtn = new TableColumn("Actions");
+        TableColumn<Analysis, Void> colBtn = new TableColumn<>("Actions");
         List<Analysis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("analysis.csv")).getPath());
         ObservableList<Analysis> list = FXCollections.observableArrayList(data);
         analysis_user_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
@@ -193,23 +193,11 @@ public class AnalysisController implements Initializable {
     }
 
     public void ToAddRecord() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("newanalysis.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("newanalysis.fxml")));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void ToBeSaved(){
-        String id = "0";
-        String date = date_textfield.getText();
-        String name = type_of_test_textfield.getText();
-        String result = result_textfield.getText();
-        Analysis analysis = new Analysis(id, date, name, result);
-        CSVHandler csv = new CSVHandler();
-        //csv.create(diagnosis);
-        //I think we need a create method, what do you suggest?
-
     }
 }
 

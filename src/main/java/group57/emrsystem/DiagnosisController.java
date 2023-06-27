@@ -49,7 +49,6 @@ public class DiagnosisController implements Initializable{
     public TableColumn<Diagnosis, String> DiagnosisAdminDiagnosedSicknessColumn;
     @FXML
     public Button DiagnosisSaveButton;
-
     @FXML
     public Button DiagnosisAdminAddRecordButton;
 
@@ -80,7 +79,7 @@ public class DiagnosisController implements Initializable{
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<Diagnosis> data = new ArrayList<Diagnosis>();
+        List<Diagnosis> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -118,7 +117,7 @@ public class DiagnosisController implements Initializable{
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<Diagnosis> data = new ArrayList<Diagnosis>();
+        List<Diagnosis> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -150,10 +149,10 @@ public class DiagnosisController implements Initializable{
         return data;
     }
 
-    Callback<TableColumn<Diagnosis, Void>, TableCell<Diagnosis, Void>> cellFactory = new Callback<TableColumn<Diagnosis, Void>, TableCell<Diagnosis, Void>>() {
+    Callback<TableColumn<Diagnosis, Void>, TableCell<Diagnosis, Void>> cellFactory = new Callback<>() {
         @Override
         public TableCell<Diagnosis, Void> call(final TableColumn<Diagnosis, Void> param) {
-            return new TableCell<Diagnosis, Void>() {
+            return new TableCell<>() {
 
                 private final Button btn = new Button("Delete");
 
@@ -187,7 +186,7 @@ public class DiagnosisController implements Initializable{
     }
 
     public void AdminRenderData() {
-        TableColumn<Diagnosis, Void> colBtn = new TableColumn("Actions");
+        TableColumn<Diagnosis, Void> colBtn = new TableColumn<>("Actions");
         List<Diagnosis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
         DiagnosisAdminDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
@@ -199,23 +198,11 @@ public class DiagnosisController implements Initializable{
     }
 
     public void ToAddRecord() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("newdiagnosis.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("newdiagnosis.fxml")));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void ToBeSaved(){
-        String id = "0";
-        String date = DiagnosisDateTextField.getText();
-        String name = DiagnosisNameTextField.getText();
-        String diagnosed_sickness = DiagnosisDiagnosedSicknessTextField.getText();
-        Diagnosis diagnosis = new Diagnosis(id, date, name, diagnosed_sickness);
-        CSVHandler csv = new CSVHandler();
-        //csv.create(diagnosis);
-        //I think we need a create method, what do you suggest?
-
     }
 }
 

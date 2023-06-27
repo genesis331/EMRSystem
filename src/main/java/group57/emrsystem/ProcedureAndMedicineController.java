@@ -114,7 +114,7 @@ public class ProcedureAndMedicineController implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<ProcedureAndMedicine> data = new ArrayList<ProcedureAndMedicine>();
+        List<ProcedureAndMedicine> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -152,7 +152,7 @@ public class ProcedureAndMedicineController implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<ProcedureAndMedicine> data = new ArrayList<ProcedureAndMedicine>();
+        List<ProcedureAndMedicine> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -196,10 +196,10 @@ public class ProcedureAndMedicineController implements Initializable {
         tableuser.setItems(list);
     }
 
-    Callback<TableColumn<ProcedureAndMedicine, Void>, TableCell<ProcedureAndMedicine, Void>> cellFactory = new Callback<TableColumn<ProcedureAndMedicine, Void>, TableCell<ProcedureAndMedicine, Void>>() {
+    Callback<TableColumn<ProcedureAndMedicine, Void>, TableCell<ProcedureAndMedicine, Void>> cellFactory = new Callback<>() {
         @Override
         public TableCell<ProcedureAndMedicine, Void> call(final TableColumn<ProcedureAndMedicine, Void> param) {
-            return new TableCell<ProcedureAndMedicine, Void>() {
+            return new TableCell<>() {
 
                 private final Button btn = new Button("Delete");
 
@@ -224,7 +224,7 @@ public class ProcedureAndMedicineController implements Initializable {
     };
 
     public void AdminRenderData(){
-        TableColumn<ProcedureAndMedicine, Void> colBtn = new TableColumn("Actions");
+        TableColumn<ProcedureAndMedicine, Void> colBtn = new TableColumn<>("Actions");
         List<ProcedureAndMedicine> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("procedureandmedicine.csv")).getPath());
         ObservableList<ProcedureAndMedicine> list = FXCollections.observableArrayList(data);
         table_date_procedure.setCellValueFactory(new PropertyValueFactory<>("Date"));
@@ -239,25 +239,10 @@ public class ProcedureAndMedicineController implements Initializable {
     }
 
     public void ToAddRecord() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("newprocedure.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("newprocedure.fxml")));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void ToBeSaved(){
-        String id = "0";
-        String date = table_date_procedure.getText();
-        String type = table_time_procedure.getText();
-        String proceduretype = table_type_procedure.getText();
-        String medication = table_medication_procedure.getText();
-        String amountprocedure = table_amount_procedure.getText();
-        String frequency = table_frequency_procedure.getText();
-        ProcedureAndMedicine procedure = new ProcedureAndMedicine(id, date, type, proceduretype, medication, amountprocedure, frequency);
-        CSVHandler csv = new CSVHandler();
-        //csv.create(diagnosis);
-        //I think we need a create method, what do you suggest?
-
     }
 }

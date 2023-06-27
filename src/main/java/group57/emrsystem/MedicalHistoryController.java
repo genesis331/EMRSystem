@@ -68,13 +68,11 @@ public class MedicalHistoryController implements Initializable {
         }
     }
 
-
-
     public List<MedicalHistory> UserReadCSV(String fileName) {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<MedicalHistory> data = new ArrayList<MedicalHistory>();
+        List<MedicalHistory> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -112,7 +110,7 @@ public class MedicalHistoryController implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<MedicalHistory> data = new ArrayList<MedicalHistory>();
+        List<MedicalHistory> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -184,7 +182,7 @@ public class MedicalHistoryController implements Initializable {
     };
 
     public void AdminRenderData() {
-        TableColumn<MedicalHistory, Void> colBtn = new TableColumn("Actions");
+        TableColumn<MedicalHistory, Void> colBtn = new TableColumn<>("Actions");
         List<MedicalHistory> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("medicalhistory.csv")).getPath());
         ObservableList<MedicalHistory> list = FXCollections.observableArrayList(data);
         MedHisAdminDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
@@ -200,7 +198,7 @@ public class MedicalHistoryController implements Initializable {
     }
 
     public void ToAddRecord() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("newdiagnosis.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("newdiagnosis.fxml")));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);

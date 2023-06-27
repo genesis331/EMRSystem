@@ -79,7 +79,7 @@ public class TreatmentCourseController  implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<TreatmentCourse> data = new ArrayList<TreatmentCourse>();
+        List<TreatmentCourse> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -117,7 +117,7 @@ public class TreatmentCourseController  implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<TreatmentCourse> data = new ArrayList<TreatmentCourse>();
+        List<TreatmentCourse> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -149,10 +149,10 @@ public class TreatmentCourseController  implements Initializable {
         return data;
     }
 
-    Callback<TableColumn<TreatmentCourse, Void>, TableCell<TreatmentCourse, Void>> cellFactory = new Callback<TableColumn<TreatmentCourse, Void>, TableCell<TreatmentCourse, Void>>() {
+    Callback<TableColumn<TreatmentCourse, Void>, TableCell<TreatmentCourse, Void>> cellFactory = new Callback<>() {
         @Override
         public TableCell<TreatmentCourse, Void> call(final TableColumn<TreatmentCourse, Void> param) {
-            return new TableCell<TreatmentCourse, Void>() {
+            return new TableCell<>() {
 
                 private final Button btn = new Button("Delete");
 
@@ -186,7 +186,7 @@ public class TreatmentCourseController  implements Initializable {
     }
 
     public void AdminRenderData(){
-        TableColumn<TreatmentCourse, Void> colBtn = new TableColumn("Actions");
+        TableColumn<TreatmentCourse, Void> colBtn = new TableColumn<>("Actions");
         List<TreatmentCourse> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("treatmentcourse.csv")).getPath());
         ObservableList<TreatmentCourse> list = FXCollections.observableArrayList(data);
         treatment_admin_treatment.setCellValueFactory(new PropertyValueFactory<>("Treatment"));
@@ -198,22 +198,10 @@ public class TreatmentCourseController  implements Initializable {
     }
 
     public void ToAddRecord() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("newtreatmentcourse.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("newtreatmentcourse.fxml")));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void ToBeSaved(){
-        String id = "0";
-        String treatment = treatment_textfield.getText();
-        String start_date = start_date_textfield.getText();
-        String end_date = end_date_textfield.getText();
-        TreatmentCourse treatmentCourse = new TreatmentCourse(id,treatment, start_date, end_date);
-        CSVHandler csv = new CSVHandler();
-        //csv.create(diagnosis);
-        //I think we need a create method, what do you suggest?
-
     }
 }

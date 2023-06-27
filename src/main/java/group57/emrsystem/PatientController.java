@@ -95,7 +95,7 @@ public class PatientController implements Initializable {
     public TableColumn<Patient, String> patientActions;
 
     public void ToAddRecord() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("newpatient.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("newpatient.fxml")));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -207,7 +207,7 @@ public class PatientController implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<Patient> data = new ArrayList<Patient>();
+        List<Patient> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));

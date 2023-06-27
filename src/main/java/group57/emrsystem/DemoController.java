@@ -45,7 +45,7 @@ public class DemoController implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(fileName);
-        List<Demo> data = new ArrayList<Demo>();
+        List<Demo> data = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
