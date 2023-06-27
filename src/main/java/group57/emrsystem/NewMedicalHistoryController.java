@@ -27,12 +27,12 @@ public class NewMedicalHistoryController implements Initializable {
     private TextField MedHisObservationsTextField;
     private TextField MedHisMajorComplicationsTextField;
     private TextField MedHisAttendingDoctorTextField;
-    private Button MedHisSaveButton;
+    public Button MedHisSaveButton;
 
     private List<String> usedIds = new ArrayList<>();
     private List<String> data = new ArrayList<>();
 
-    public NewMedicalHistoryController(Stage stage) {
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
 

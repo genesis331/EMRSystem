@@ -264,10 +264,12 @@ public class TreatmentCourseController  implements Initializable {
     public void ToAddRecord() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("newtreatmentcourse.fxml"));
-        fxmlLoader.setController(new NewTreatmentCourseController(stage));
+        NewTreatmentCourseController controller = new NewTreatmentCourseController();
+        fxmlLoader.setController(controller);
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        controller.setStage(stage);
         stage.setScene(scene);
         stage.show();
     }

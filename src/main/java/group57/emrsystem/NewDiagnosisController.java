@@ -30,7 +30,7 @@ public class NewDiagnosisController implements Initializable{
     private List<String> usedIds = new ArrayList<>();
     private List<String> data = new ArrayList<>();
 
-    public NewDiagnosisController(Stage stage) {
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
 

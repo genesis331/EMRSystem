@@ -30,7 +30,7 @@ public class NewTreatmentCourseController implements Initializable {
     private List<String> usedIds = new ArrayList<>();
     private List<String> data = new ArrayList<>();
 
-    public NewTreatmentCourseController(Stage stage) {
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
 

@@ -35,7 +35,7 @@ public class NewProcedureAndMedicineController implements Initializable {
         private List<String> usedIds = new ArrayList<>();
         private List<String> data = new ArrayList<>();
 
-        public NewProcedureAndMedicineController(Stage stage) {
+        public void setStage(Stage stage) {
                 this.stage = stage;
         }
 

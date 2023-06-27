@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Add New Procedure/Medicine">
          <font>
@@ -103,7 +102,7 @@
       </VBox>
       <HBox alignment="TOP_CENTER">
          <children>
-            <Button id="savebuttonprocedure" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #1890FF;" text="Save" textAlignment="CENTER" textFill="WHITE">
+            <Button id="savebuttonprocedure" fx:id="savebuttonprocedure" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #1890FF;" text="Save" textAlignment="CENTER" textFill="WHITE">
                <padding>
                   <Insets bottom="10.0" left="35.0" right="35.0" top="10.0" />
                </padding>
@@ -121,4 +120,3 @@
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
    </padding>
 </VBox>
-
