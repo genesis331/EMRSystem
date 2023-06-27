@@ -104,45 +104,45 @@ public class PatientController implements Initializable {
         stage.show();
     }
 
-    public void ToViewMedicalHistory() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("medicalhistory-user.fxml"));
-        fxmlLoader.setController(new MedicalHistoryController(stage, false, username));
+    public void ToViewMedicalHistory(boolean isAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource(isAdmin ? "medicalhistory-admin.fxml" : "medicalhistory-user.fxml"));
+        fxmlLoader.setController(new MedicalHistoryController(stage, isAdmin, isAdmin ? "admin" : username));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void ToViewTreatmentCourse() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("treatmentcourse-user.fxml"));
-        fxmlLoader.setController(new TreatmentCourseController(stage, false, username));
+    public void ToViewTreatmentCourse(boolean isAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource(isAdmin ? "treatmentcourse-admin.fxml" : "treatmentcourse-user.fxml"));
+        fxmlLoader.setController(new TreatmentCourseController(stage, isAdmin, isAdmin ? "admin" : username));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void ToViewAnalysisForm() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("analysis-user.fxml"));
-        fxmlLoader.setController(new AnalysisController(stage, false, username));
+    public void ToViewAnalysisForm(boolean isAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource(isAdmin ? "analysis-admin.fxml" : "analysis-user.fxml"));
+        fxmlLoader.setController(new AnalysisController(stage, isAdmin, isAdmin ? "admin" : username));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void ToViewDiagnosisForm() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("diagnosis-user.fxml"));
-        fxmlLoader.setController(new DiagnosisController(stage, false, username));
+    public void ToViewDiagnosisForm(boolean isAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource(isAdmin ? "diagnosis-admin.fxml" : "diagnosis-user.fxml"));
+        fxmlLoader.setController(new DiagnosisController(stage, isAdmin, isAdmin ? "admin" : username));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void ToViewProcedureandMedicineForm() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("procedureandmedicine-user.fxml"));
-        fxmlLoader.setController(new ProcedureAndMedicineController(stage, false, username));
+    public void ToViewProcedureandMedicineForm(boolean isAdmin) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource(isAdmin ? "procedureandmedicine-admin.fxml" : "procedureandmedicine-user.fxml"));
+        fxmlLoader.setController(new ProcedureAndMedicineController(stage, isAdmin, isAdmin ? "admin" : username));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
@@ -225,41 +225,6 @@ public class PatientController implements Initializable {
                 stage.close();
             });
         } else {
-            viewMedicalHistoryButton.setOnAction(e -> {
-                try {
-                    ToViewMedicalHistory();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-            viewTreatmentCourseButton.setOnAction(e -> {
-                try {
-                    ToViewTreatmentCourse();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-            viewAnalysisFormButton.setOnAction(e -> {
-                try {
-                    ToViewAnalysisForm();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-            viewDiagnosisFormButton.setOnAction(e -> {
-                try {
-                    ToViewDiagnosisForm();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-            viewProcedureandMedicineFormButton.setOnAction(e -> {
-                try {
-                    ToViewProcedureandMedicineForm();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
             saveButton.setOnAction(e -> {
                 saveData();
             });
@@ -267,6 +232,41 @@ public class PatientController implements Initializable {
                 stage.close();
             });
         }
+        viewMedicalHistoryButton.setOnAction(e -> {
+            try {
+                ToViewMedicalHistory(isAdmin);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        viewTreatmentCourseButton.setOnAction(e -> {
+            try {
+                ToViewTreatmentCourse(isAdmin);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        viewAnalysisFormButton.setOnAction(e -> {
+            try {
+                ToViewAnalysisForm(isAdmin);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        viewDiagnosisFormButton.setOnAction(e -> {
+            try {
+                ToViewDiagnosisForm(isAdmin);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        viewProcedureandMedicineFormButton.setOnAction(e -> {
+            try {
+                ToViewProcedureandMedicineForm(isAdmin);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         renderData();
     }
 
