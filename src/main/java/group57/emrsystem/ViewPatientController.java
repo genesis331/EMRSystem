@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class ViewPatientController implements Initializable {
     private Stage stage;
     private String id;
+    private PatientController parentController;
 
     @FXML
     private TextField nationalIDField;
@@ -65,6 +66,10 @@ public class ViewPatientController implements Initializable {
     public ViewPatientController(Stage stage, String id) {
         this.stage = stage;
         this.id = id;
+    }
+
+    public void setParentController(PatientController parentController) {
+        this.parentController = parentController;
     }
 
     public void ToViewMedicalHistory() throws IOException {
@@ -272,6 +277,7 @@ public class ViewPatientController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Record has been deleted successfully!");
             alert.showAndWait();
+            parentController.renderData();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
         }

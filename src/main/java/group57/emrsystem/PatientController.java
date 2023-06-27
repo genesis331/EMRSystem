@@ -205,6 +205,7 @@ public class PatientController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("New record has been saved!");
             alert.showAndWait();
+            renderData();
             stage.close();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
@@ -353,6 +354,9 @@ public class PatientController implements Initializable {
         List<Patient> data = readCSV(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
         ObservableList<Patient> list = FXCollections.observableArrayList(data);
         if (isAdmin) {
+            if (patientTable.getColumns().size() > 6) {
+                patientTable.getColumns().remove(patientTable.getColumns().size() - 1);
+            }
             TableColumn<Patient, Void> colBtn = new TableColumn<>("Actions");
             patientNationalID.setCellValueFactory(new PropertyValueFactory<>("NationalID"));
             patientName.setCellValueFactory(new PropertyValueFactory<>("Name"));

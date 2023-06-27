@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 public class NewPatientController implements Initializable {
     private Stage stage;
 
+    private PatientController parentController;
+
     @FXML
     private TextField nationalIDField;
 
@@ -47,6 +49,10 @@ public class NewPatientController implements Initializable {
 
     public NewPatientController(Stage stage) {
         this.stage = stage;
+    }
+
+    public void setParentController(PatientController parentController) {
+        this.parentController = parentController;
     }
 
     private void readCSV() {
@@ -112,6 +118,7 @@ public class NewPatientController implements Initializable {
             alert.setContentText("New record has been saved!");
             alert.showAndWait();
             stage.close();
+            parentController.renderData();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
         }
