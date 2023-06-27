@@ -44,8 +44,6 @@ public class AnalysisController implements Initializable {
     public TableColumn<Analysis, String> analysis_user_type_of_test;
     @FXML
     public TableColumn<Analysis, String> analysis_user_result;
-    @FXML
-    public TableColumn<Analysis, String> analysis_user_action;
 
 
     @Override

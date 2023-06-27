@@ -62,8 +62,6 @@ public class ProcedureAndMedicineController implements Initializable {
     public TableColumn<ProcedureAndMedicine, String> table_amount_procedure;
     @FXML
     public TableColumn<ProcedureAndMedicine, String> table_frequency_procedure;
-    @FXML
-    public TableColumn<ProcedureAndMedicine, String> table_actions_procedure;
 
     @FXML
     private TextField textdateprocedure;

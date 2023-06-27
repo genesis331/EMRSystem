@@ -2,6 +2,7 @@ package group57.emrsystem;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.*;
 import java.net.URL;
@@ -91,9 +93,6 @@ public class PatientController implements Initializable {
     @FXML
     public TableColumn<Patient, String> patientAddress;
 
-    @FXML
-    public TableColumn<Patient, String> patientActions;
-
     public void ToAddRecord() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("newpatient.fxml")));
         Stage stage = new Stage();
@@ -157,6 +156,9 @@ public class PatientController implements Initializable {
                     throw new RuntimeException(ex);
                 }
             });
+            logoutButtonAdmin.setOnAction(e -> {
+                stage.close();
+            });
         } else {
             viewMedicalHistoryButton.setOnAction(e -> {
                 try {
@@ -192,6 +194,9 @@ public class PatientController implements Initializable {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+            });
+            logoutButtonUser.setOnAction(e -> {
+                stage.close();
             });
         }
         renderData();
@@ -239,16 +244,46 @@ public class PatientController implements Initializable {
         return data;
     }
 
+    Callback<TableColumn<Patient, Void>, TableCell<Patient, Void>> cellFactory = new Callback<>() {
+        @Override
+        public TableCell<Patient, Void> call(final TableColumn<Patient, Void> param) {
+            return new TableCell<>() {
+
+                private final Button btn = new Button("View");
+
+                {
+                    btn.setOnAction((ActionEvent event) -> {
+                        Patient data = getTableView().getItems().get(getIndex());
+                        System.out.println("selectedData: " + data);
+                    });
+                }
+
+                @Override
+                public void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(btn);
+                    }
+                }
+            };
+        }
+    };
+
     public void renderData() {
         List<Patient> data = readCSV(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
         ObservableList<Patient> list = FXCollections.observableArrayList(data);
         if (isAdmin) {
+            TableColumn<Patient, Void> colBtn = new TableColumn<>("Actions");
             patientNationalID.setCellValueFactory(new PropertyValueFactory<>("NationalID"));
             patientName.setCellValueFactory(new PropertyValueFactory<>("Name"));
             patientAge.setCellValueFactory(new PropertyValueFactory<>("Age"));
             patientGender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
             patientContactNo.setCellValueFactory(new PropertyValueFactory<>("ContactNo"));
             patientAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
+            colBtn.setCellFactory(cellFactory);
+            patientTable.getColumns().add(colBtn);
             patientTable.setItems(list);
         } else {
             for (Patient patient : data) {

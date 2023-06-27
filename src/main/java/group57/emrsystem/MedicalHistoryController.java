@@ -50,7 +50,6 @@ public class MedicalHistoryController implements Initializable {
     public TableColumn MedHisAdminObservationColumn;
     public TableColumn MedHisAdminMajorComplicationsColumn;
     public TableColumn MedHisAdminAttendingDoctorColumn;
-    public TableColumn MedHisAdminActionsColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

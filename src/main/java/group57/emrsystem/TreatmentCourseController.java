@@ -50,8 +50,6 @@ public class TreatmentCourseController  implements Initializable {
     public TableColumn<TreatmentCourse, String> treatment_admin_start_date;
     @FXML
     public TableColumn<TreatmentCourse, String> treatment_admin_end_date;
-    @FXML
-    public TableColumn<TreatmentCourse, String> treatment_actions;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
