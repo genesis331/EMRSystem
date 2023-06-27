@@ -46,11 +46,9 @@ public class Test {
         String filename = "diagnosis.csv";
         List<Diagnosis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource(filename)).getPath());
         List<String> stringArrays = new ArrayList<>();
-        int count = 0;
 
         for (Diagnosis diagnosis : data) {
-            String diagnosisString = count + "," + diagnosis.getDate() + "," + diagnosis.getName() + "," + diagnosis.getDiagnosedSickness() + "\n";
-            count++;
+            String diagnosisString = diagnosis.getId() + "," + diagnosis.getDate() + "," + diagnosis.getName() + "," + diagnosis.getDiagnosedSickness() + "\n";
             stringArrays.add(diagnosisString);
         }
 
