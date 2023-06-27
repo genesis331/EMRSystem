@@ -4,6 +4,7 @@ import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -21,7 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewDiagnosisController {
+public class NewDiagnosisController implements Initializable{
     private Stage stage;
     private String delimiter = ",";
 
@@ -131,7 +132,8 @@ public class NewDiagnosisController {
 
     }
 
-    public void ToBeSaved(){
+    @FXML
+    private void ToBeSaved(ActionEvent event){
         DiagnosisSaveButton.setOnAction(e-> {
                     ;
                     int id = 0;
@@ -145,7 +147,14 @@ public class NewDiagnosisController {
                 });
         //I think we need a create method, what do you suggest?
 
+
+
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        DiagnosisSaveButton.setOnAction(this :: ToBeSaved);
 
+    }
 }
+
