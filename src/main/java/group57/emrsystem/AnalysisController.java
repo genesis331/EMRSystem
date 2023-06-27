@@ -257,10 +257,12 @@ public class AnalysisController implements Initializable {
     }
 
     public void ToAddRecord() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newanalysis.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("newanalysis.fxml"));
         fxmlLoader.setController(new NewAnalysisController(stage));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
     }
