@@ -2,6 +2,7 @@ package group57.emrsystem;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -105,6 +106,12 @@ public class NewPatientController implements Initializable {
                 writer.write(stringArray);
             }
             System.out.println("Data has been written to the file.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("New record has been saved!");
+            alert.showAndWait();
+            stage.close();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
         }

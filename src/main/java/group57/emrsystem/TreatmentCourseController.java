@@ -203,6 +203,11 @@ public class TreatmentCourseController  implements Initializable {
                 writer.write(stringArray);
             }
             System.out.println("Data has been written to the file.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Record has been deleted successfully!");
+            alert.showAndWait();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
         }
