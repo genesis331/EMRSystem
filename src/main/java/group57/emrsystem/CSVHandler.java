@@ -1,6 +1,4 @@
 package group57.emrsystem;
-import java.io.*;
-import java.util.*;
 
 public class CSVHandler {
     private String delimiter = ",";

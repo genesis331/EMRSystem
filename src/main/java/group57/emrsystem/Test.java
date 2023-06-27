@@ -1,11 +1,8 @@
 package group57.emrsystem;
 
-import javafx.stage.Stage;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Test {
     public static List<Diagnosis> AdminReadCSV(String fileName) {
