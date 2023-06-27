@@ -5,17 +5,16 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+import javafx.util.Callback;
 
 import java.io.*;
 import java.net.URL;
@@ -145,6 +144,34 @@ public class DiagnosisController implements Initializable{
         }
         return data;
     }
+
+    Callback<TableColumn<Diagnosis, Void>, TableCell<Diagnosis, Void>> cellFactory = new Callback<TableColumn<Diagnosis, Void>, TableCell<Diagnosis, Void>>() {
+        @Override
+        public TableCell<Diagnosis, Void> call(final TableColumn<Diagnosis, Void> param) {
+            return new TableCell<Diagnosis, Void>() {
+
+                private final Button btn = new Button("Delete");
+
+                {
+                    btn.setOnAction((ActionEvent event) -> {
+                        Diagnosis data = getTableView().getItems().get(getIndex());
+                        System.out.println("selectedData: " + data);
+                    });
+                }
+
+                @Override
+                public void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(btn);
+                    }
+                }
+            };
+        }
+    };
+
     public void UserRenderData() {
         List<Diagnosis> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
@@ -155,11 +182,14 @@ public class DiagnosisController implements Initializable{
     }
 
     public void AdminRenderData() {
+        TableColumn<Diagnosis, Void> colBtn = new TableColumn("Actions");
         List<Diagnosis> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("diagnosis.csv")).getPath());
         ObservableList<Diagnosis> list = FXCollections.observableArrayList(data);
         DiagnosisUserDateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
         DiagnosisUserNameColumn.setCellValueFactory(new PropertyValueFactory<>("Name"));
         DiagnosisUserDiagnosedSicknessColumn.setCellValueFactory(new PropertyValueFactory<>("DiagnosedSickness"));
+        colBtn.setCellFactory(cellFactory);
+        DiagnosisAdminTableView.getColumns().add(colBtn);
         DiagnosisAdminTableView.setItems(list);
     }
 

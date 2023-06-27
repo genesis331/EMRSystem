@@ -2,17 +2,16 @@ package group57.emrsystem;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.*;
 import java.net.URL;
@@ -141,23 +140,51 @@ public class TreatmentCourseController  implements Initializable {
         return data;
     }
 
+    Callback<TableColumn<TreatmentCourse, Void>, TableCell<TreatmentCourse, Void>> cellFactory = new Callback<TableColumn<TreatmentCourse, Void>, TableCell<TreatmentCourse, Void>>() {
+        @Override
+        public TableCell<TreatmentCourse, Void> call(final TableColumn<TreatmentCourse, Void> param) {
+            return new TableCell<TreatmentCourse, Void>() {
+
+                private final Button btn = new Button("Delete");
+
+                {
+                    btn.setOnAction((ActionEvent event) -> {
+                        TreatmentCourse data = getTableView().getItems().get(getIndex());
+                        System.out.println("selectedData: " + data);
+                    });
+                }
+
+                @Override
+                public void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(btn);
+                    }
+                }
+            };
+        }
+    };
+
     public void UserRenderData(){
         List<TreatmentCourse> data = UserReadCSV(Objects.requireNonNull(DemoController.class.getResource("treatmentcourse.csv")).getPath());
         ObservableList<TreatmentCourse> list = FXCollections.observableArrayList(data);
         treatment_user_treatment.setCellValueFactory(new PropertyValueFactory<>("Treatment"));
         treatment_user_start_date.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
         treatment_user_end_date.setCellValueFactory(new PropertyValueFactory<>("EndDate"));
-        //treatment_user_actions.setCellValueFactory(new PropertyValueFactory<>("actions"));
         treatment_user_table.setItems(list);
     }
 
     public void AdminRenderData(){
+        TableColumn<TreatmentCourse, Void> colBtn = new TableColumn("Actions");
         List<TreatmentCourse> data = AdminReadCSV(Objects.requireNonNull(DemoController.class.getResource("treatmentcourse.csv")).getPath());
         ObservableList<TreatmentCourse> list = FXCollections.observableArrayList(data);
         treatment_user_treatment.setCellValueFactory(new PropertyValueFactory<>("Treatment"));
         treatment_user_start_date.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
         treatment_user_end_date.setCellValueFactory(new PropertyValueFactory<>("EndDate"));
-        //treatment_user_actions.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        colBtn.setCellFactory(cellFactory);
+        treatment_admin_table.getColumns().add(colBtn);
         treatment_admin_table.setItems(list);
     }
 
