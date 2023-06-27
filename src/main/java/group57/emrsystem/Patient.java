@@ -25,7 +25,7 @@ public class Patient {
         return name.get();
     }
 
-    public String getNational_ID() {
+    public String getNationalID() {
         return national_id.get();
     }
 
@@ -41,7 +41,7 @@ public class Patient {
         return address.get();
     }
 
-    public String getContact_No() {
+    public String getContactNo() {
         return contact_no.get();
     }
 

@@ -47,7 +47,7 @@
             <Insets bottom="25.0" left="50.0" right="50.0" top="40.0" />
          </padding>
       </GridPane>
-      <TableView fx:id="patientAdmin">
+      <TableView fx:id="patientAdminTable">
         <columns>
           <TableColumn fx:id="patientAdminNationalID" prefWidth="75.0" text="National ID" />
           <TableColumn fx:id="patientAdminName" prefWidth="75.0" text="Name" />

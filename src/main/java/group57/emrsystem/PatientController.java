@@ -64,28 +64,28 @@ public class PatientController implements Initializable {
     private Button logoutButtonAdmin;
 
     @FXML
-    private TableView<Patient> patientAdminTable;
+    public TableView<Patient> patientAdminTable;
 
     @FXML
-    private TableColumn<Patient, String> patientAdminNationalID;
+    public TableColumn<Patient, String> patientAdminNationalID;
 
     @FXML
-    private TableColumn<Patient, String> patientAdminName;
+    public TableColumn<Patient, String> patientAdminName;
 
     @FXML
     private TableColumn<Patient, String> patientAdminAge;
 
     @FXML
-    private TableColumn<Patient, String> patientAdminGender;
+    public TableColumn<Patient, String> patientAdminGender;
 
     @FXML
-    private TableColumn<Patient, String> patientAdminContactNo;
+    public TableColumn<Patient, String> patientAdminContactNo;
 
     @FXML
-    private TableColumn<Patient, String> patientAdminAddress;
+    public TableColumn<Patient, String> patientAdminAddress;
 
     @FXML
-    private TableColumn<Patient, String> patientAdminActions;
+    public TableColumn<Patient, String> patientAdminActions;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -135,13 +135,13 @@ public class PatientController implements Initializable {
     public void renderData() {
         List<Patient> data = readCSV(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
         ObservableList<Patient> list = FXCollections.observableArrayList(data);
-        patientAdminNationalID.setCellValueFactory(new PropertyValueFactory<>("National ID"));
+        patientAdminNationalID.setCellValueFactory(new PropertyValueFactory<>("NationalID"));
         patientAdminName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         patientAdminAge.setCellValueFactory(new PropertyValueFactory<>("Age"));
         patientAdminGender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
-        patientAdminContactNo.setCellValueFactory(new PropertyValueFactory<>("Contact No."));
+        patientAdminContactNo.setCellValueFactory(new PropertyValueFactory<>("ContactNo"));
         patientAdminAddress.setCellValueFactory(new PropertyValueFactory<>("Address"));
-        patientAdminActions.setCellValueFactory(new PropertyValueFactory<>("Actions"));
+//        patientAdminActions.setCellValueFactory(new PropertyValueFactory<>("Actions"));
         patientAdminTable.setItems(list);
     }
 }
