@@ -264,9 +264,9 @@ public class MedicalHistoryController implements Initializable {
 
     public void ToAddRecord() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newdiagnosis.fxml"));
-        fxmlLoader.setController(new NewMedicalHistoryController());
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
+        fxmlLoader.setController(new NewMedicalHistoryController(stage));
         stage.setScene(scene);
         stage.show();
     }

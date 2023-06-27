@@ -30,6 +30,10 @@ public class NewDiagnosisController implements Initializable{
     private List<String> usedIds = new ArrayList<>();
     private List<String> data = new ArrayList<>();
 
+    public NewDiagnosisController(Stage stage) {
+        this.stage = stage;
+    }
+
     private void readCSV() {
         String delimiter = ",";
         BufferedReader bReader = null;
@@ -69,7 +73,7 @@ public class NewDiagnosisController implements Initializable{
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
-        List<String> data = new ArrayList<>();
+        List<String> dropdownList = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -77,7 +81,7 @@ public class NewDiagnosisController implements Initializable{
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    data.add(tokens[2]);
+                    dropdownList.add(tokens[2]);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -97,7 +101,7 @@ public class NewDiagnosisController implements Initializable{
                 e.printStackTrace();
             }
         }
-        PatientIdDropdown.getItems().addAll(data);
+        PatientIdDropdown.getItems().addAll(dropdownList);
     }
 
     private void ToBeSaved(){

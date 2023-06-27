@@ -265,9 +265,9 @@ public class DiagnosisController implements Initializable{
 
     public void ToAddRecord() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newdiagnosis.fxml"));
-        fxmlLoader.setController(new NewDiagnosisController());
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
+        fxmlLoader.setController(new NewDiagnosisController(stage));
         stage.setScene(scene);
         stage.show();
     }

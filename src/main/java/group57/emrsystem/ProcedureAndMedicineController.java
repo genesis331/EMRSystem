@@ -303,9 +303,9 @@ public class ProcedureAndMedicineController implements Initializable {
 
     public void ToAddRecord() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newprocedure.fxml"));
-        fxmlLoader.setController(new NewProcedureAndMedicineController());
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
+        fxmlLoader.setController(new NewProcedureAndMedicineController(stage));
         stage.setScene(scene);
         stage.show();
     }

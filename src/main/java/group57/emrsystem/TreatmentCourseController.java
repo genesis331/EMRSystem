@@ -262,9 +262,10 @@ public class TreatmentCourseController  implements Initializable {
     }
 
     public void ToAddRecord() throws IOException{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("newtreatmentcourse.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newtreatmentcourse.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
-        Scene scene = new Scene(root);
+        fxmlLoader.setController(new NewTreatmentCourseController(stage));
         stage.setScene(scene);
         stage.show();
     }

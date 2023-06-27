@@ -30,6 +30,10 @@ public class NewTreatmentCourseController implements Initializable {
     private List<String> usedIds = new ArrayList<>();
     private List<String> data = new ArrayList<>();
 
+    public NewTreatmentCourseController(Stage stage) {
+        this.stage = stage;
+    }
+
     private void readCSV() {
         String delimiter = ",";
         BufferedReader bReader = null;
@@ -69,7 +73,7 @@ public class NewTreatmentCourseController implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
-        List<String> data = new ArrayList<>();
+        List<String> dropdownList = new ArrayList<>();
         try {
             String line = "";
             bReader = new BufferedReader(new FileReader(file));
@@ -77,7 +81,7 @@ public class NewTreatmentCourseController implements Initializable {
             while ((line = bReader.readLine()) != null) {
                 String[] tokens = line.split(delimiter);
                 if (tokens.length > 0) {
-                    data.add(tokens[2]);
+                    dropdownList.add(tokens[2]);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -97,7 +101,7 @@ public class NewTreatmentCourseController implements Initializable {
                 e.printStackTrace();
             }
         }
-        PatientIdDropdown.getItems().addAll(data);
+        PatientIdDropdown.getItems().addAll(dropdownList);
     }
 
     @FXML
@@ -135,6 +139,7 @@ public class NewTreatmentCourseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         save_button.setOnAction(actionEvent -> ToBeSaved());
+        initDropdown();
     }
 
 }
