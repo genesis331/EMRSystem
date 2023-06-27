@@ -254,9 +254,8 @@ public class PatientController implements Initializable {
                 {
                     btn.setOnAction((ActionEvent event) -> {
                         Patient data = getTableView().getItems().get(getIndex());
-                        System.out.println("selectedData: " + data);
                         FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("viewpatient-admin.fxml"));
-                        fxmlLoader.setController(new ViewPatientController(stage, "1"));
+                        fxmlLoader.setController(new ViewPatientController(stage, data.getID()));
                         Stage stage = new Stage();
                         Scene scene = null;
                         try {

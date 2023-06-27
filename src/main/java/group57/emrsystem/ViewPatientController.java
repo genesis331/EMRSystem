@@ -63,7 +63,7 @@ public class ViewPatientController implements Initializable {
 
     public void ToViewMedicalHistory() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("medicalhistory-admin.fxml"));
-        fxmlLoader.setController(new MedicalHistoryController(stage, true, "1"));
+        fxmlLoader.setController(new MedicalHistoryController(stage, true, id));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
@@ -72,7 +72,7 @@ public class ViewPatientController implements Initializable {
 
     public void ToViewTreatmentCourse() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("treatmentcourse-admin.fxml"));
-        fxmlLoader.setController(new TreatmentCourseController(stage, true, "1"));
+        fxmlLoader.setController(new TreatmentCourseController(stage, true, id));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
@@ -81,7 +81,7 @@ public class ViewPatientController implements Initializable {
 
     public void ToViewAnalysisForm() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("analysis-admin.fxml"));
-        fxmlLoader.setController(new AnalysisController(stage, true, "1"));
+        fxmlLoader.setController(new AnalysisController(stage, true, id));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
@@ -90,7 +90,7 @@ public class ViewPatientController implements Initializable {
 
     public void ToViewDiagnosisForm() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("diagnosis-admin.fxml"));
-        fxmlLoader.setController(new DiagnosisController(stage, true, "1"));
+        fxmlLoader.setController(new DiagnosisController(stage, true, id));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
@@ -99,7 +99,7 @@ public class ViewPatientController implements Initializable {
 
     public void ToViewProcedureandMedicineForm() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("procedureandmedicine-admin.fxml"));
-        fxmlLoader.setController(new ProcedureAndMedicineController(stage, true, "1"));
+        fxmlLoader.setController(new ProcedureAndMedicineController(stage, true, id));
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
         stage.setScene(scene);
