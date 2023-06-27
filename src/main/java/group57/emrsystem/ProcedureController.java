@@ -25,7 +25,7 @@ public class ProcedureController implements Initializable{
     private Boolean isAdmin=true;
     private Stage stage;
     @FXML
-    private Button add_button_admin;
+    private Button addbuttonadmin;
     @FXML
     private TextField text_date_procedure;
 
@@ -49,9 +49,9 @@ public class ProcedureController implements Initializable{
 
 
     @FXML
-    public TableView<Procedure> Procedure_admin_table;
+    public TableView<Procedure> tableadmin;
     @FXML
-    public TableView<Procedure> Procedure_user_table;
+    public TableView<Procedure> tableuser;
     @FXML
     public TableColumn<Procedure, String> table_date_procedure;
     @FXML
@@ -77,7 +77,7 @@ public class ProcedureController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (isAdmin) {
             AdminRenderData();
-            add_button_admin.setOnAction(e -> {
+            addbuttonadmin.setOnAction(e -> {
                 try {
                     ToAddRecord();
                 } catch (IOException ex) {
@@ -172,7 +172,7 @@ public class ProcedureController implements Initializable{
         table_amount_procedure.setCellValueFactory(new PropertyValueFactory<>("Amount"));
         table_frequency_procedure.setCellValueFactory(new PropertyValueFactory<>("Frequency"));
 
-        Procedure_user_table.setItems(list);
+        tableuser.setItems(list);
     }
 
     Callback<TableColumn<Procedure, Void>, TableCell<Procedure, Void>> cellFactory = new Callback<TableColumn<Procedure, Void>, TableCell<Procedure, Void>>() {
@@ -214,8 +214,8 @@ public class ProcedureController implements Initializable{
         table_frequency_procedure.setCellValueFactory(new PropertyValueFactory<>("Frequency"));
 
         colBtn.setCellFactory(cellFactory);
-        admin_table_action_procedure.getColumns().add(colBtn);
-        admin_table_action_procedure.setText(list.toString());
+        tableadmin.getColumns().add(colBtn);
+        tableadmin.setItems(list);
     }
 
     public void ToAddRecord() throws IOException {
