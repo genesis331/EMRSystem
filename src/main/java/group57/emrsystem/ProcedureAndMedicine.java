@@ -1,6 +1,6 @@
 package group57.emrsystem;
 
-public class ProcedureAndMedicine {
+public class ProcedureAndMedicine extends TreatmentCourse {
     private String id;
     private String date;
     private String time;
@@ -11,6 +11,7 @@ public class ProcedureAndMedicine {
 
 
     public ProcedureAndMedicine(String id, String date, String time, String proceduretype, String medication, String amountprocedure, String frequency) {
+        super(id, date, time, proceduretype);
         this.id = id;
         this.date = date;
         this.time = time;
