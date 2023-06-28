@@ -31,7 +31,7 @@
       <VBox>
          <children>
             <Label text="Date" />
-            <TextField id="textdateprocedure">
+            <TextField fx:id="textdateprocedure">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></TextField>
@@ -43,7 +43,7 @@
       <VBox layoutX="25.0" layoutY="51.0">
          <children>
             <Label text="Time" />
-            <TextField id="texttimeprocedure">
+            <TextField fx:id="texttimeprocedure">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></TextField>
@@ -55,7 +55,7 @@
       <VBox layoutX="25.0" layoutY="103.0">
          <children>
             <Label text="Procedure Type" />
-            <TextField id="textproceduretypeprocedure">
+            <TextField fx:id="textproceduretypeprocedure">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></TextField>
@@ -67,7 +67,7 @@
       <VBox layoutX="25.0" layoutY="155.0">
          <children>
             <Label text="Medication" />
-            <TextField id="textmedicationprocedure">
+            <TextField fx:id="textmedicationprocedure">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></TextField>
@@ -79,7 +79,7 @@
       <VBox layoutX="25.0" layoutY="207.0">
          <children>
             <Label text="Amount" />
-            <TextField id="textamountprocedure">
+            <TextField fx:id="textamountprocedure">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></TextField>
@@ -91,7 +91,7 @@
       <VBox layoutX="25.0" layoutY="259.0">
          <children>
             <Label text="Frequency" />
-            <TextField id="textfrequencyprocedure">
+            <TextField fx:id="textfrequencyprocedure">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></TextField>
@@ -102,7 +102,7 @@
       </VBox>
       <HBox alignment="TOP_CENTER">
          <children>
-            <Button id="savebuttonprocedure" fx:id="savebuttonprocedure" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #1890FF;" text="Save" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="savebuttonprocedure" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: #1890FF;" text="Save" textAlignment="CENTER" textFill="WHITE">
                <padding>
                   <Insets bottom="10.0" left="35.0" right="35.0" top="10.0" />
                </padding>
