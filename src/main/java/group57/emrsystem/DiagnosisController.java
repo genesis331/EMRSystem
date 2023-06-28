@@ -276,6 +276,7 @@ public class DiagnosisController implements Initializable{
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         controller.setStage(stage);
+        controller.setParentController(this);
         stage.setScene(scene);
         stage.show();
     }

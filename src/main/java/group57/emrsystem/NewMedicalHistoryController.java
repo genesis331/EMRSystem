@@ -24,12 +24,19 @@ public class NewMedicalHistoryController implements Initializable {
     private ChoiceBox PatientIdDropdown;
     @FXML
     private TextField MedHisDateTextField;
+    @FXML
     private TextField MedHisTimeTextField;
+    @FXML
     private TextField MedHisWardTextField;
+    @FXML
     private TextField MedHisTreatmentResultsTextField;
+    @FXML
     private TextField MedHisObservationsTextField;
+    @FXML
     private TextField MedHisMajorComplicationsTextField;
+    @FXML
     private TextField MedHisAttendingDoctorTextField;
+    @FXML
     public Button MedHisSaveButton;
 
     private List<String> usedIds = new ArrayList<>();

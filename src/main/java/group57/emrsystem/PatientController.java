@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -95,10 +96,15 @@ public class PatientController implements Initializable {
     private List<String> data = new ArrayList<>();
 
     public void ToAddRecord() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("newpatient.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("newpatient.fxml"));
+        NewPatientController controller = new NewPatientController();
+        fxmlLoader.setController(controller);
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
         Stage stage = new Stage();
-        fxmlLoader.setController(new NewPatientController(stage));
-        Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
+        controller.setStage(stage);
+        controller.setParentController(this);
         stage.setScene(scene);
         stage.show();
     }
@@ -204,8 +210,6 @@ public class PatientController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("New record has been saved!");
             alert.showAndWait();
-            renderData();
-            stage.close();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
         }

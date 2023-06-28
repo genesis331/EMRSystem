@@ -47,7 +47,7 @@ public class NewPatientController implements Initializable {
     private List<String> usedIds = new ArrayList<>();
     private List<String> data = new ArrayList<>();
 
-    public NewPatientController(Stage stage) {
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
 
