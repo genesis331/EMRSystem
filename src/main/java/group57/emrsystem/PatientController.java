@@ -228,6 +228,17 @@ public class PatientController implements Initializable {
             });
             logoutButtonAdmin.setOnAction(e -> {
                 stage.close();
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+                fxmlLoader.setController(new LoginController(stage));
+                Scene scene = null;
+                try {
+                    scene = new Scene(fxmlLoader.load(), 1080, 720);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                stage.setTitle("Login Screen");
+                stage.setScene(scene);
+                stage.show();
             });
         } else {
             saveButton.setOnAction(e -> {
@@ -235,6 +246,17 @@ public class PatientController implements Initializable {
             });
             logoutButtonUser.setOnAction(e -> {
                 stage.close();
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+                fxmlLoader.setController(new LoginController(stage));
+                Scene scene = null;
+                try {
+                    scene = new Scene(fxmlLoader.load(), 1080, 720);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                stage.setTitle("Login Screen");
+                stage.setScene(scene);
+                stage.show();
             });
         }
         viewMedicalHistoryButton.setOnAction(e -> {
