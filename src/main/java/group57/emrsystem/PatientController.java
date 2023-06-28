@@ -164,6 +164,7 @@ public class PatientController implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
+        List<String> data = new ArrayList<>();
 
         try {
             String line = "";
@@ -316,6 +317,7 @@ public class PatientController implements Initializable {
         return data;
     }
 
+    PatientController parentController = this;
     Callback<TableColumn<Patient, Void>, TableCell<Patient, Void>> cellFactory = new Callback<>() {
         @Override
         public TableCell<Patient, Void> call(final TableColumn<Patient, Void> param) {
@@ -326,15 +328,19 @@ public class PatientController implements Initializable {
                 {
                     btn.setOnAction((ActionEvent event) -> {
                         Patient data = getTableView().getItems().get(getIndex());
-                        FXMLLoader fxmlLoader = new FXMLLoader(PatientController.class.getResource("viewpatient-admin.fxml"));
-                        fxmlLoader.setController(new ViewPatientController(stage, data.getID()));
-                        Stage stage = new Stage();
-                        Scene scene = null;
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("viewpatient-admin.fxml"));
+                        ViewPatientController controller = new ViewPatientController(stage, data.getID());
+                        fxmlLoader.setController(controller);
+                        Parent root = null;
                         try {
-                            scene = new Scene(fxmlLoader.load(), 1080, 720);
+                            root = fxmlLoader.load();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        controller.setParentController(parentController);
                         stage.setScene(scene);
                         stage.show();
                     });

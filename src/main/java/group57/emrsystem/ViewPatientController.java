@@ -177,6 +177,7 @@ public class ViewPatientController implements Initializable {
         String delimiter = ",";
         BufferedReader bReader = null;
         File file = new File(Objects.requireNonNull(PatientController.class.getResource("patient.csv")).getPath());
+        List<String> data = new ArrayList<>();
 
         try {
             String line = "";
@@ -226,6 +227,7 @@ public class ViewPatientController implements Initializable {
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
         }
+        parentController.renderData();
     }
 
     private void deleteData() {
