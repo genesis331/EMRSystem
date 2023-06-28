@@ -31,19 +31,4 @@ public class Diagnosis {
     public String getDiagnosedSickness() {
         return diagnosed_sickness.get();
     }
-
-    public void modifydate(String date) {
-
-        this.date = new SimpleStringProperty(date);
-    }
-
-    public void modifyname(String name) {
-
-        this.name = new SimpleStringProperty(name);
-    }
-     
-    public void modifytime(String diagnosed_sickness) {
-
-        this.diagnosed_sickness = new SimpleStringProperty(diagnosed_sickness);
-    }
 }

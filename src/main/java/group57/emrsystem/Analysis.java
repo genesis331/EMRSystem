@@ -28,20 +28,4 @@ public class Analysis {
     public String getResult(){
         return result;
     }
-
-    public void modifyid(String id){
-        this.id = id;
-    }
-    
-    public void modifydate(String date){
-        this.date = date;
-    }
-    
-    public void modifytype_of_test(String type_of_test){
-        this.type_of_test = type_of_test;
-    }
-    
-    public void modiftresult(String result){
-        this.result = result;
-    }
 }

@@ -54,43 +54,4 @@ public class MedicalHistory {
     public String getAttendingDoctor() {
         return attending_doctor.get();
     }
-
-    public void modifyid(String id){
-
-        this.id = id;
-    }
-
-    public void modifydate(String date) {
-
-        this.date = new SimpleStringProperty(date);
-    }
-
-    public void modifytime(String time) {
-
-        this.time = new SimpleStringProperty(time);
-    }
-
-    public void modifyward(String ward) {
-
-        this.ward = new SimpleStringProperty(ward);
-    }
-
-    public void modifytreatment_results(String treatment_results) {
-
-        this.treatment_results = new SimpleStringProperty(treatment_results);
-    }
-    
-    public void modifyobservation(String observation) {
-
-        this.observation = new SimpleStringProperty(observation);
-    }
-    
-    public void modifymajor_complications(String major_complications) {
-        this.major_complications = new SimpleStringProperty(major_complications);
-    }
-    
-    public void modifyattending_doctor(String attending_doctor) {
-
-        this.attending_doctor = new SimpleStringProperty(attending_doctor);
-    }
 }

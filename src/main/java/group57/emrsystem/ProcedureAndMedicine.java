@@ -47,33 +47,4 @@ public class ProcedureAndMedicine {
     public String getFrequency() {
         return frequency;
     }
-
-    public void modifyId(String id){
-        this.id = id;
-    }
-    public void modifyDate(String date) {
-        this.date = date;
-    }
-
-    public void modifyTime(String type) {
-        this.time = type;
-    }
-
-    public void modifyProcedureType(String proceduretype) {
-        this.proceduretype = proceduretype;
-    }
-
-    public void modifyMedication(String medication) {
-        this.medication = medication;
-    }
-
-    public void modifyAmountProcedure(String amountprocedure) {
-        this.amountprocedure = amountprocedure;
-    }
-    public void modifyFrequency(String frequency) {
-        this.frequency = frequency;
-    }
-
-
-
 }

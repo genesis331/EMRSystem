@@ -48,32 +48,4 @@ public class Patient {
     public String getContactNo() {
         return contact_no.get();
     }
-
-    public void modifyID(String id) {
-        this.id = id;
-    }
-
-    public void modifyName(String name) {
-        this.name = new SimpleStringProperty(name);
-    }
-
-    public void modifyNational_ID(String national_id) {
-        this.national_id = new SimpleStringProperty(national_id);
-    }
-
-    public void modifyAge(String age) {
-        this.age = new SimpleStringProperty(age);
-    }
-
-    public void modifyGender(String gender) {
-        this.gender = new SimpleStringProperty(gender);
-    }
-
-    public void modifyAddress(String address) {
-        this.address = new SimpleStringProperty(address);
-    }
-
-    public void modifyContact_No(String contact_no) {
-        this.contact_no = new SimpleStringProperty(contact_no);
-    }
 }

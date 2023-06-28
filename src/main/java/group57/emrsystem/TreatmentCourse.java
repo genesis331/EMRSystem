@@ -30,21 +30,5 @@ public class TreatmentCourse {
      public String getEndDate(){
          return end_date.get();
      }
-
-     public void modifyid(String id){
-         this.id = id;
-     }
-
-     public void modifytreatment(String treatment){
-         this.treatment = new SimpleStringProperty(treatment);
-     }
-
-     public void modifystart_date(String start_date){
-         this.start_date = new SimpleStringProperty(start_date);
-     }
-     
-     public void modifyend_date(String end_date){
-         this.end_date = new SimpleStringProperty(end_date);
-     }
 }
 
