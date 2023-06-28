@@ -45,7 +45,7 @@ public class NewTreatmentCourseController implements Initializable {
     private void readCSV() {
         String delimiter = ",";
         BufferedReader bReader = null;
-        File file = new File(Objects.requireNonNull(PatientController.class.getResource("analysis.csv")).getPath());
+        File file = new File(Objects.requireNonNull(PatientController.class.getResource("treatmentcourse.csv")).getPath());
 
         try {
             String line = "";
@@ -139,10 +139,10 @@ public class NewTreatmentCourseController implements Initializable {
             alert.setContentText("New record has been saved!");
             alert.showAndWait();
             stage.close();
-            parentController.AdminRenderData();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
         }
+        parentController.AdminRenderData();
     }
 
     @Override

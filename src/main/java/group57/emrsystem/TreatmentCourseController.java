@@ -208,10 +208,10 @@ public class TreatmentCourseController  implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Record has been deleted successfully!");
             alert.showAndWait();
-            AdminRenderData();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
         }
+        AdminRenderData();
     }
 
     Callback<TableColumn<TreatmentCourse, Void>, TableCell<TreatmentCourse, Void>> cellFactory = new Callback<>() {

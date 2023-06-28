@@ -279,10 +279,10 @@ public class ViewPatientController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Record has been deleted successfully!");
             alert.showAndWait();
-            parentController.renderData();
         } catch (IOException e) {
             System.err.println("An error occurred while writing to the file: " + e.getMessage());
         }
+        parentController.renderData();
     }
 
     @Override
