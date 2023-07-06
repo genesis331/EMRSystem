@@ -399,10 +399,10 @@ public class PatientController implements Initializable {
             patientTable.getColumns().add(colBtn);
             patientTable.setItems(list);
         } else {
-            boolean found = false;
+//            boolean found = false;
             for (Patient patient : data) {
                 if (patient.getNationalID().equals(username)) {
-                    found = true;
+//                    found = true;
                     nationalIDField.setText(patient.getNationalID());
                     nameField.setText(patient.getName());
                     ageField.setText(patient.getAge());
@@ -411,14 +411,14 @@ public class PatientController implements Initializable {
                     addressArea.setText(patient.getAddress());
                 }
             }
-            if (!found) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText(null);
-                alert.setContentText("Patient not found!");
-                alert.showAndWait();
-                stage.close();
-            }
+//            if (!found) {
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Error Dialog");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Patient not found!");
+//                alert.showAndWait();
+//                stage.close();
+//            }
         }
     }
 }
